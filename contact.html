@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contact Us &amp; Educational Support | Oxybott</title>
+  <meta name="description" content="Get in touch with the Oxybott team. Technical support, school quotes, distributor applications, and comprehensive FAQ.">
+  <link rel="icon" type="image/webp" href="assets/images/oxybott_logo.webp">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap">
+  <link rel="stylesheet" href="assets/css/styles.css">
+  <style>
+    .contact-layout {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      padding: 4rem 0 6rem;
+    }
+
+    .contact-info-card {
+      background: var(--oxy-gray-50);
+      border: 1px solid var(--oxy-gray-200);
+      border-radius: var(--radius-xl);
+      padding: 3rem 2.5rem;
+    }
+
+    .info-channel-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 1rem;
+      margin-bottom: 2rem;
+    }
+
+    .info-channel-icon {
+      width: 44px;
+      height: 44px;
+      border-radius: var(--radius-md);
+      background: var(--oxy-primary-light);
+      color: var(--oxy-primary);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.25rem;
+      flex-shrink: 0;
+    }
+
+    /* FAQ Accordion */
+    .faq-accordion {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      margin-top: 3rem;
+    }
+
+    .faq-item {
+      border: 1px solid var(--oxy-gray-200);
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      background: var(--oxy-white);
+    }
+
+    .faq-question {
+      width: 100%;
+      text-align: left;
+      padding: 1.25rem 1.5rem;
+      font-family: var(--font-heading);
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: var(--oxy-navy);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: var(--oxy-white);
+      cursor: pointer;
+    }
+
+    .faq-question:hover {
+      background-color: var(--oxy-gray-50);
+    }
+
+    .faq-answer {
+      padding: 0 1.5rem 1.25rem;
+      font-size: 0.925rem;
+      color: var(--oxy-gray-600);
+      line-height: 1.6;
+      display: none;
+    }
+
+    .faq-item.active .faq-answer {
+      display: block;
+    }
+
+    .faq-item.active .faq-question {
+      color: var(--oxy-primary);
+    }
+
+    @media (max-width: 992px) {
+      .contact-layout { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Announcement -->
+  <div class="announcement-bar">
+    <div class="container announcement-content">
+      <span>
+        <span class="announcement-badge">SUPPORT</span> 
+        Questions about our robotics kits? Our engineering support team responds within 24 hours.
+      </span>
+    </div>
+  </div>
+
+  <!-- Header -->
+  <header class="site-header">
+    <div class="container header-wrapper">
+      <a href="index.html" class="brand-logo-link" aria-label="Oxybott Home">
+        <img src="assets/images/oxybott_logo.webp" alt="Oxybott Logo" class="brand-logo-img">
+      </a>
+
+      <nav class="main-nav">
+        <ul class="nav-list">
+          <li class="nav-item"><a href="products.html" class="nav-link">Products</a></li>
+          <li class="nav-item"><a href="education.html" class="nav-link">Education Solutions</a></li>
+          <li class="nav-item"><a href="software.html" class="nav-link">Software</a></li>
+          <li class="nav-item"><a href="tutorials.html" class="nav-link">Tutorials</a></li>
+          <li class="nav-item"><a href="about.html" class="nav-link">About Us</a></li>
+          <li class="nav-item active"><a href="contact.html" class="nav-link">Contact</a></li>
+        </ul>
+      </nav>
+
+      <div class="header-actions">
+        <button class="action-btn search-trigger" aria-label="Search Products"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg></button>
+        <button class="action-btn cart-trigger" aria-label="Shopping Cart"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg><span class="cart-badge">0</span></button>
+        <a href="#quote" class="btn btn-orange btn-sm quote-modal-trigger">Get Free Quote</a>
+        <button class="action-btn mobile-menu-btn" id="mobileMenuToggle" aria-label="Toggle Navigation Menu"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="18" x2="21" y2="18"/></svg></button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Banner -->
+  <section style="background: linear-gradient(135deg, #071526 0%, #0c2340 100%); color: var(--oxy-white); padding: 4.5rem 0; text-align: center;">
+    <div class="container container-narrow">
+      <span class="section-tag" style="background: rgba(0, 153, 255, 0.2); color: #7dd3fc;">We're Here to Help</span>
+      <h1 style="color: var(--oxy-white); margin-bottom: 1rem;">Contact Oxybott Team</h1>
+      <p style="color: #94a3b8; font-size: 1.15rem; line-height: 1.6;">
+        Whether you need classroom quote estimates, technical assistance with a sensor, or distributor partnership details, we are here for you.
+      </p>
+    </div>
+  </section>
+
+  <main class="container">
+    <div class="contact-layout">
+      <!-- Contact Form -->
+      <div>
+        <h2 style="margin-bottom: 0.75rem;">Send a Message</h2>
+        <p style="color: var(--oxy-gray-600); margin-bottom: 2rem;">Please fill out the form below and an Oxybott specialist will respond promptly.</p>
+
+        <form id="contactPageForm" style="display: flex; flex-direction: column; gap: 1.25rem;">
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1.25rem;">
+            <div>
+              <label for="contactName" style="font-size: 0.85rem; font-weight: 700; color: var(--oxy-navy);">Your Name *</label>
+              <input type="text" id="contactName" required placeholder="John Doe" style="width: 100%; padding: 0.8rem; border: 1px solid var(--oxy-gray-300); border-radius: var(--radius-md); margin-top: 0.35rem;">
+            </div>
+            <div>
+              <label for="contactEmail" style="font-size: 0.85rem; font-weight: 700; color: var(--oxy-navy);">Your Email *</label>
+              <input type="email" id="contactEmail" required placeholder="john@example.com" style="width: 100%; padding: 0.8rem; border: 1px solid var(--oxy-gray-300); border-radius: var(--radius-md); margin-top: 0.35rem;">
+            </div>
+          </div>
+
+          <div>
+            <label for="contactInquirySubject" style="font-size: 0.85rem; font-weight: 700; color: var(--oxy-navy);">Inquiry Subject</label>
+            <select id="contactInquirySubject" aria-label="Inquiry Subject" style="width: 100%; padding: 0.8rem; border: 1px solid var(--oxy-gray-300); border-radius: var(--radius-md); margin-top: 0.35rem;">
+              <option>School &amp; District Volume Quote</option>
+              <option>Technical Support &amp; Code Help</option>
+              <option>Free Teacher Evaluation Sample</option>
+              <option>Distributor &amp; Retail Partnership</option>
+              <option>OEM &amp; Co-Branding Opportunity</option>
+            </select>
+          </div>
+
+          <div>
+            <label for="contactMessage" style="font-size: 0.85rem; font-weight: 700; color: var(--oxy-navy);">Message *</label>
+            <textarea id="contactMessage" rows="5" required placeholder="How can our educational team assist you?" style="width: 100%; padding: 0.8rem; border: 1px solid var(--oxy-gray-300); border-radius: var(--radius-md); margin-top: 0.35rem;"></textarea>
+          </div>
+
+          <button type="submit" id="contactSubmitBtn" class="btn btn-primary btn-lg" style="margin-top: 0.5rem;">Send Inquiry &rarr;</button>
+        </form>
+      </div>
+
+      <!-- Channels & Office Info -->
+      <div class="contact-info-card">
+        <h3 style="margin-bottom: 2rem;">Contact Channels</h3>
+
+        <div class="info-channel-item">
+          <div class="info-channel-icon">&#128231;</div>
+          <div>
+            <div style="font-weight: 700; color: var(--oxy-navy); font-size: 1.05rem;">Email Support</div>
+            <div style="color: var(--oxy-gray-600); font-size: 0.9rem; margin-top: 0.2rem;">support@oxybott.com (Technical)</div>
+            <div style="color: var(--oxy-gray-600); font-size: 0.9rem;">education@oxybott.com (School Orders)</div>
+          </div>
+        </div>
+
+        <div class="info-channel-item">
+          <div class="info-channel-icon" style="background: var(--oxy-orange-light); color: var(--oxy-orange);">&#127758;</div>
+          <div>
+            <div style="font-weight: 700; color: var(--oxy-navy); font-size: 1.05rem;">Global Headquarters</div>
+            <div style="color: var(--oxy-gray-600); font-size: 0.9rem; margin-top: 0.2rem;">Oxybott STEM Robotics Inc.</div>
+            <div style="color: var(--oxy-gray-600); font-size: 0.9rem;">100 Innovation Way, Tech Park, Suite 400</div>
+          </div>
+        </div>
+
+        <div class="info-channel-item">
+          <div class="info-channel-icon" style="background: #ecfdf5; color: var(--oxy-green);">&#9200;</div>
+          <div>
+            <div style="font-weight: 700; color: var(--oxy-navy); font-size: 1.05rem;">Support Hours</div>
+            <div style="color: var(--oxy-gray-600); font-size: 0.9rem; margin-top: 0.2rem;">Monday &ndash; Friday: 8:00 AM &ndash; 6:00 PM EST</div>
+            <div style="color: var(--oxy-gray-600); font-size: 0.9rem;">Weekend Ticket Escalation available</div>
+          </div>
+        </div>
+
+        <div style="background: var(--oxy-white); padding: 1.5rem; border-radius: var(--radius-lg); border: 1px solid var(--oxy-gray-200); margin-top: 1.5rem;">
+          <h4 style="color: var(--oxy-navy); margin-bottom: 0.35rem;">Looking for instant documentation?</h4>
+          <p style="font-size: 0.875rem; color: var(--oxy-gray-600); margin-bottom: 1rem;">Browse our online wiki, video assembly walkthroughs, and code repos.</p>
+          <a href="tutorials.html" class="btn btn-outline btn-sm">Visit Tutorial Hub &rarr;</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- FAQ Accordion Section -->
+    <div style="padding-top: 3rem; padding-bottom: 6rem; max-width: 860px; margin: 0 auto;" id="faq">
+      <div class="section-header">
+        <span class="section-tag orange">Frequently Asked Questions</span>
+        <h2 class="section-title">Common Questions from Educators &amp; Parents</h2>
+      </div>
+
+      <div class="faq-accordion">
+        <div class="faq-item active">
+          <button class="faq-question">
+            <span>What makes Oxybott kits different from generic Arduino starter kits?</span>
+            <span>&plus;</span>
+          </button>
+          <div class="faq-answer">
+            Oxybott standardizes on the dual-core 240MHz ESP32 with built-in Wi-Fi and Bluetooth BLE. Furthermore, all our educational modules utilize anti-reverse 4-pin Easy-Plug connectors, meaning students cannot reverse polarity or short-circuit boards during classroom activities. We also provide our customized OxyCode block programming suite alongside Arduino C++ and MicroPython.
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-question">
+            <span>Can schools pay via Purchase Orders (PO) or Net-30 invoicing?</span>
+            <span>&plus;</span>
+          </button>
+          <div class="faq-answer">
+            Yes! We accept formal institutional Purchase Orders (POs) from verified public and private school districts, universities, and non-profit STEM hubs. Submit your quote request above or email education@oxybott.com with your official PO.
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-question">
+            <span>Are the teacher slides and curriculum worksheets editable?</span>
+            <span>&plus;</span>
+          </button>
+          <div class="faq-answer">
+            Yes. All lesson slides are delivered in fully editable PowerPoint (.pptx) formats, and worksheets are provided in both PDF and Word (.docx) formats so teachers can customize grading rubrics and homework questions for their specific classroom pacing.
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-question">
+            <span>What age group is best suited for the QD022 Robot Arm?</span>
+            <span>&plus;</span>
+          </button>
+          <div class="faq-answer">
+            The QD022 Robot Arm is ideal for Grade 6 through Grade 12 (Ages 12+), as well as collegiate maker spaces. Younger students can control it via joystick or drag-and-drop OxyCode blocks, while advanced students program inverse kinematics and trigonometry in Arduino C++ or MicroPython.
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-question">
+            <span>What is your warranty and replacement parts policy?</span>
+            <span>&plus;</span>
+          </button>
+          <div class="faq-answer">
+            All Oxybott kits include a 1-year manufacturer warranty. If a servo motor, sensor, or structural bracket is accidentally damaged during a student build, our educational support team ships free replacement parts directly to your school.
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-top">
+        <div class="footer-brand-col">
+          <a href="index.html"><img src="assets/images/oxybott_logo.webp" alt="Oxybott" class="brand-logo-img"></a>
+          <p class="footer-tagline">Oxybott is an international leader in ESP32-powered STEM kits and classroom solutions.</p>
+        </div>
+        <div class="footer-col"><h4 class="footer-col-title">STEM Kits</h4><ul class="footer-links-list"><li><a href="products.html" class="footer-link">All Products</a></li></ul></div>
+        <div class="footer-col"><h4 class="footer-col-title">Education</h4><ul class="footer-links-list"><li><a href="education.html" class="footer-link">Classroom Solutions</a></li></ul></div>
+        <div class="footer-col"><h4 class="footer-col-title">Resources</h4><ul class="footer-links-list"><li><a href="software.html" class="footer-link">OxyCode IDE</a></li><li><a href="tutorials.html" class="footer-link">Tutorials</a></li></ul></div>
+        <div class="footer-col"><h4 class="footer-col-title">Company</h4><ul class="footer-links-list"><li><a href="about.html" class="footer-link">About Us</a></li><li><a href="contact.html" class="footer-link">Contact</a></li></ul></div>
+      </div>
+      <div class="footer-bottom"><div>&copy; 2026 Oxybott Education Inc. All rights reserved.</div></div>
+    </div>
+  </footer>
+
+  <div class="cart-drawer-overlay" id="cartDrawerOverlay">
+    <div class="cart-drawer">
+      <div class="cart-header"><h3 class="cart-title">Your STEM Cart</h3><button class="cart-close-btn" id="cartCloseBtn">&times;</button></div>
+      <div class="cart-body"><div class="cart-empty-state" id="cartEmptyState"><p>Your cart is empty.</p></div><div class="cart-items-list" id="cartDrawerItems"></div></div>
+      <div class="cart-footer">
+        <div class="cart-summary-row cart-summary-total"><span>Subtotal:</span><span id="cartDrawerSubtotal">$0.00</span></div>
+        <button class="btn btn-orange checkout-btn" id="cartCheckoutBtn">Proceed to Checkout &rarr;</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="search-modal-overlay" id="searchModalOverlay">
+    <div class="search-modal-box">
+      <div class="search-input-wrapper"><input type="text" class="search-input-field" id="searchModalInput" placeholder="Search kits by name or SKU..."></div>
+      <div class="search-results-list" id="searchResultsList"></div>
+    </div>
+  </div>
+
+  <script src="assets/js/products-data.js"></script>
+  <script src="assets/js/store-client.js"></script>
+  <script src="assets/js/main.js"></script>
+  <script>
+    // FAQ Accordion Handler
+    document.querySelectorAll('.faq-question').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const item = btn.parentElement;
+        item.classList.toggle('active');
+      });
+    });
+
+    document.getElementById('contactPageForm')?.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const form = e.target;
+      const submitBtn = document.getElementById('contactSubmitBtn');
+      const nameInput = document.getElementById('contactName');
+      const emailInput = document.getElementById('contactEmail');
+      const subjectInput = document.getElementById('contactInquirySubject');
+      const messageInput = document.getElementById('contactMessage');
+
+      const name = nameInput?.value.trim();
+      const email = emailInput?.value.trim();
+      const subject = subjectInput?.value;
+      const message = messageInput?.value.trim();
+
+      if (!name || !email || !message) {
+        showToast("Please fill in all required fields.", true);
+        return;
+      }
+
+      if (submitBtn) {
+        submitBtn.disabled = true;
+        submitBtn.textContent = "Sending Inquiry...";
+      }
+
+      try {
+        const res = await fetch('/api/inquiries', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            type: 'contact',
+            name,
+            email,
+            subject,
+            message
+          })
+        });
+
+        const data = await res.json();
+        if (res.ok && data.success) {
+          showToast(data.message || "Thank you! Your message has been sent to the Oxybott team.");
+          form.reset();
+        } else {
+          showToast(data.error || "Failed to submit inquiry. Please check your entries.", true);
+        }
+      } catch (err) {
+        showToast("Network error. Please verify your connection and try again.", true);
+      } finally {
+        if (submitBtn) {
+          submitBtn.disabled = false;
+          submitBtn.textContent = "Send Inquiry \u2192";
+        }
+      }
+    });
+  </script>
+</body>
+</html>

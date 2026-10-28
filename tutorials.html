@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tutorials, Assembly Guides &amp; Wiki | Oxybott</title>
+  <meta name="description" content="Step-by-step video assembly tutorials, wiring schematics, and open-source code repositories for Oxybott STEM robotics and ESP32 kits.">
+  <link rel="icon" type="image/webp" href="assets/images/oxybott_logo.webp">
+  <link rel="stylesheet" href="assets/css/styles.css">
+  <style>
+    .tutorial-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2rem;
+      margin-bottom: 5rem;
+    }
+
+    .tutorial-card {
+      background: var(--oxy-white);
+      border: 1px solid var(--oxy-gray-200);
+      border-radius: var(--radius-xl);
+      overflow: hidden;
+      box-shadow: var(--shadow-sm);
+      display: flex;
+      flex-direction: column;
+      transition: all var(--transition-normal);
+    }
+
+    .tutorial-card:hover {
+      transform: translateY(-6px);
+      box-shadow: var(--shadow-xl);
+      border-color: var(--oxy-primary);
+    }
+
+    .tutorial-media {
+      position: relative;
+      background: #0f172a;
+      aspect-ratio: 16 / 9;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+    }
+
+    .tutorial-thumb {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      opacity: 0.85;
+      transition: transform var(--transition-smooth);
+    }
+
+    .tutorial-card:hover .tutorial-thumb {
+      transform: scale(1.05);
+      opacity: 0.95;
+    }
+
+    .play-badge {
+      position: absolute;
+      width: 54px;
+      height: 54px;
+      border-radius: var(--radius-full);
+      background-color: var(--oxy-orange);
+      color: var(--oxy-white);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.25rem;
+      box-shadow: 0 4px 15px rgba(255, 107, 0, 0.5);
+      transition: transform var(--transition-fast);
+    }
+
+    .tutorial-card:hover .play-badge {
+      transform: scale(1.15);
+    }
+
+    .tutorial-card-body {
+      padding: 1.75rem;
+      display: flex;
+      flex-direction: column;
+      flex-grow: 1;
+    }
+
+    .tutorial-time {
+      font-size: 0.8rem;
+      font-weight: 700;
+      color: var(--oxy-primary);
+      text-transform: uppercase;
+      margin-bottom: 0.5rem;
+    }
+
+    .tutorial-title {
+      font-size: 1.15rem;
+      color: var(--oxy-navy);
+      line-height: 1.35;
+      margin-bottom: 0.75rem;
+    }
+
+    .tutorial-desc {
+      font-size: 0.875rem;
+      color: var(--oxy-gray-600);
+      line-height: 1.6;
+      margin-bottom: 1.25rem;
+      flex-grow: 1;
+    }
+
+    @media (max-width: 992px) {
+      .tutorial-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+
+    @media (max-width: 640px) {
+      .tutorial-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Announcement -->
+  <div class="announcement-bar">
+    <div class="container announcement-content">
+      <span>
+        <span class="announcement-badge">LEARNING HUB</span> 
+        Access 100+ Free Video Tutorials, Schematics &amp; Arduino Source Code
+        <a href="#code" class="announcement-link">Explore Code Repository &rarr;</a>
+      </span>
+    </div>
+  </div>
+
+  <!-- Header -->
+  <header class="site-header">
+    <div class="container header-wrapper">
+      <a href="index.html" class="brand-logo-link" aria-label="Oxybott Home">
+        <img src="assets/images/oxybott_logo.webp" alt="Oxybott Logo" class="brand-logo-img">
+      </a>
+
+      <nav class="main-nav">
+        <ul class="nav-list">
+          <li class="nav-item"><a href="products.html" class="nav-link">Products</a></li>
+          <li class="nav-item"><a href="education.html" class="nav-link">Education Solutions</a></li>
+          <li class="nav-item"><a href="software.html" class="nav-link">Software</a></li>
+          <li class="nav-item active"><a href="tutorials.html" class="nav-link">Tutorials</a></li>
+          <li class="nav-item"><a href="about.html" class="nav-link">About Us</a></li>
+          <li class="nav-item"><a href="contact.html" class="nav-link">Contact</a></li>
+        </ul>
+      </nav>
+
+      <div class="header-actions">
+        <button class="action-btn search-trigger" aria-label="Search Products"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg></button>
+        <button class="action-btn cart-trigger" aria-label="Shopping Cart"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg><span class="cart-badge">0</span></button>
+        <a href="#quote" class="btn btn-orange btn-sm quote-modal-trigger">Get Free Quote</a>
+        <button class="action-btn mobile-menu-btn" id="mobileMenuToggle" aria-label="Toggle Navigation Menu"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="18" x2="21" y2="18"/></svg></button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Banner -->
+  <section style="background: linear-gradient(135deg, #071526 0%, #0c2340 100%); color: var(--oxy-white); padding: 4.5rem 0; text-align: center;">
+    <div class="container container-narrow">
+      <span class="section-tag" style="background: rgba(0, 153, 255, 0.2); color: #7dd3fc;">Knowledge Base</span>
+      <h1 style="color: var(--oxy-white); margin-bottom: 1rem;">Oxybott Tutorials &amp; Assembly Guides</h1>
+      <p style="color: #94a3b8; font-size: 1.15rem; line-height: 1.6;">
+        Master your Oxybott robotics kits with clear, step-by-step video instructions, color pinout diagrams, and open-source sample code.
+      </p>
+    </div>
+  </section>
+
+  <!-- Tutorials Grid -->
+  <main class="container" style="padding-top: 4rem; padding-bottom: 6rem;">
+    <div class="section-header">
+      <span class="section-tag orange">Step-by-Step Build Videos</span>
+      <h2 class="section-title">Featured Assembly &amp; Coding Guides</h2>
+    </div>
+
+    <div class="tutorial-grid">
+      <!-- Tutorial 1 -->
+      <div class="tutorial-card">
+        <div class="tutorial-media">
+          <img src="assets/images/qd022-robot-arm.png" alt="QD022 Assembly" class="tutorial-thumb" style="object-fit: contain; background: #0c2340; padding: 1.5rem;" loading="lazy" decoding="async">
+          <div class="play-badge">&#9658;</div>
+        </div>
+        <div class="tutorial-card-body">
+          <div class="tutorial-time">Lesson 01 &bull; 24 Mins</div>
+          <h3 class="tutorial-title">Oxybott QD022 4-DOF Robot Arm Mechanical Assembly &amp; Servo Zeroing</h3>
+          <p class="tutorial-desc">Learn how to correctly assemble the laser-cut acrylic chassis, mount the 4 metal-gear servos, and calibrate zero angles before powering on.</p>
+          <div style="display: flex; gap: 0.5rem;">
+            <button class="btn btn-primary btn-sm" onclick="alert('Launching Oxybott QD022 Video Player...');">Watch Video</button>
+            <a href="product-detail.html?id=qd022" class="btn btn-outline btn-sm">Kit Details</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Tutorial 2 -->
+      <div class="tutorial-card">
+        <div class="tutorial-media">
+          <img src="assets/images/qd001-robot-car.png" alt="QD001 Build" class="tutorial-thumb" style="object-fit: contain; background: #0c2340; padding: 1.5rem;" loading="lazy" decoding="async">
+          <div class="play-badge">&#9658;</div>
+        </div>
+        <div class="tutorial-card-body">
+          <div class="tutorial-time">Lesson 02 &bull; 18 Mins</div>
+          <h3 class="tutorial-title">Oxybott QD001 Mecanum Wheel Car: Line Tracking &amp; Ultrasonic Ranging</h3>
+          <p class="tutorial-desc">Assemble the 4-wheel independent motor drive and configure the 3-channel infrared line tracker using OxyCode block logic.</p>
+          <div style="display: flex; gap: 0.5rem;">
+            <button class="btn btn-primary btn-sm" onclick="alert('Launching Oxybott QD001 Video Player...');">Watch Video</button>
+            <a href="product-detail.html?id=qd001" class="btn btn-outline btn-sm">Kit Details</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Tutorial 3 -->
+      <div class="tutorial-card">
+        <div class="tutorial-media">
+          <img src="assets/images/qe011-weather-station.png" alt="QE011 IoT" class="tutorial-thumb" style="object-fit: contain; background: #0c2340; padding: 1.5rem;" loading="lazy" decoding="async">
+          <div class="play-badge">&#9658;</div>
+        </div>
+        <div class="tutorial-card-body">
+          <div class="tutorial-time">Lesson 03 &bull; 15 Mins</div>
+          <h3 class="tutorial-title">Oxybott QE011 Weather Station: Wi-Fi IoT Cloud Telemetry with ThingSpeak</h3>
+          <p class="tutorial-desc">Connect your ESP32 to home or school Wi-Fi and push live atmospheric temperature, humidity, and raindrop data to an online dashboard.</p>
+          <div style="display: flex; gap: 0.5rem;">
+            <button class="btn btn-primary btn-sm" onclick="alert('Launching Oxybott QE011 Video Player...');">Watch Video</button>
+            <a href="product-detail.html?id=qe011" class="btn btn-outline btn-sm">Kit Details</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Tutorial 4 -->
+      <div class="tutorial-card">
+        <div class="tutorial-media">
+          <img src="assets/images/qe001-smart-home.png" alt="QE001 Smart Home" class="tutorial-thumb" style="object-fit: contain; background: #0c2340; padding: 1.5rem;" loading="lazy" decoding="async">
+          <div class="play-badge">&#9658;</div>
+        </div>
+        <div class="tutorial-card-body">
+          <div class="tutorial-time">Lesson 04 &bull; 22 Mins</div>
+          <h3 class="tutorial-title">Oxybott QE001 Smart Home: RFID Keyfob Door Locks &amp; Gas Leak Buzzer Alarm</h3>
+          <p class="tutorial-desc">Build an automated smart home security model. Read RFID cards, trigger servo deadbolts, and wire analog gas/smoke detectors.</p>
+          <div style="display: flex; gap: 0.5rem;">
+            <button class="btn btn-primary btn-sm" onclick="alert('Launching Oxybott QE001 Video Player...');">Watch Video</button>
+            <a href="product-detail.html?id=qe001" class="btn btn-outline btn-sm">Kit Details</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Tutorial 5 -->
+      <div class="tutorial-card">
+        <div class="tutorial-media">
+          <img src="assets/images/qd020-spider-robot.png" alt="QD020 Spider" class="tutorial-thumb" style="object-fit: contain; background: #0c2340; padding: 1.5rem;" loading="lazy" decoding="async">
+          <div class="play-badge">&#9658;</div>
+        </div>
+        <div class="tutorial-card-body">
+          <div class="tutorial-time">Lesson 05 &bull; 30 Mins</div>
+          <h3 class="tutorial-title">Oxybott QD020 Quadruped Spider: 8-Servo Bio-inspired Gait Programming</h3>
+          <p class="tutorial-desc">Step-by-step calibration of 8 servos. Implement crawl kinematics, self-stabilization, and smartphone Bluetooth posture navigation.</p>
+          <div style="display: flex; gap: 0.5rem;">
+            <button class="btn btn-primary btn-sm" onclick="alert('Launching Oxybott QD020 Video Player...');">Watch Video</button>
+            <a href="product-detail.html?id=qd020" class="btn btn-outline btn-sm">Kit Details</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Tutorial 6 -->
+      <div class="tutorial-card">
+        <div class="tutorial-media">
+          <img src="assets/images/qe200-starter-kit.jpg" alt="QE200 Breadboard" class="tutorial-thumb" style="object-fit: contain; background: #0c2340; padding: 1.5rem;" loading="lazy" decoding="async">
+          <div class="play-badge">&#9658;</div>
+        </div>
+        <div class="tutorial-card-body">
+          <div class="tutorial-time">Lesson 06 &bull; 12 Mins</div>
+          <h3 class="tutorial-title">Oxybott QE200 ESP32 Starter: From 'Blink LED' to Web Server Hosting</h3>
+          <p class="tutorial-desc">Master foundational breadboard circuitry, pull-up resistors, active buzzer tones, and host an interactive HTML web server on ESP32.</p>
+          <div style="display: flex; gap: 0.5rem;">
+            <button class="btn btn-primary btn-sm" onclick="alert('Launching Oxybott QE200 Video Player...');">Watch Video</button>
+            <a href="product-detail.html?id=qe200" class="btn btn-outline btn-sm">Kit Details</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Code & Schematics Download Section -->
+    <section id="code" style="background: var(--oxy-gray-50); border: 1px solid var(--oxy-gray-200); border-radius: var(--radius-xl); padding: 3.5rem 2.5rem; text-align: center;">
+      <span class="section-tag">Open Source Hub</span>
+      <h2 style="margin-top: 0.5rem; margin-bottom: 1rem;">Official Code Repositories &amp; PDF Schematics</h2>
+      <p style="color: var(--oxy-gray-600); max-width: 650px; margin: 0 auto 2rem;">
+        All Oxybott hardware and code examples are 100% open-source. Download complete libraries, wiring schematics, and teacher curriculum guides.
+      </p>
+
+      <div style="display: flex; justify-content: center; gap: 1rem; flex-wrap: wrap;">
+        <a href="#" class="btn btn-primary" onclick="alert('Downloading Oxybott_Master_Arduino_Library.zip...'); return false;">Download Arduino Library (.zip)</a>
+        <a href="#" class="btn btn-orange" onclick="alert('Downloading OxyCode_Sample_Projects.zip...'); return false;">Download OxyCode Blocks (.zip)</a>
+        <a href="#" class="btn btn-outline" onclick="alert('Downloading Complete_Schematics_PDF.zip...'); return false;">Wiring Schematics (.pdf)</a>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-top">
+        <div class="footer-brand-col">
+          <a href="index.html"><img src="assets/images/oxybott_logo.webp" alt="Oxybott" class="brand-logo-img" loading="lazy" decoding="async"></a>
+          <p class="footer-tagline">Oxybott is an international leader in ESP32-powered STEM kits and classroom solutions.</p>
+        </div>
+        <div class="footer-col"><h4 class="footer-col-title">STEM Kits</h4><ul class="footer-links-list"><li><a href="products.html" class="footer-link">All Products</a></li></ul></div>
+        <div class="footer-col"><h4 class="footer-col-title">Education</h4><ul class="footer-links-list"><li><a href="education.html" class="footer-link">Classroom Solutions</a></li></ul></div>
+        <div class="footer-col"><h4 class="footer-col-title">Resources</h4><ul class="footer-links-list"><li><a href="software.html" class="footer-link">OxyCode IDE</a></li><li><a href="tutorials.html" class="footer-link">Tutorials</a></li></ul></div>
+        <div class="footer-col"><h4 class="footer-col-title">Company</h4><ul class="footer-links-list"><li><a href="about.html" class="footer-link">About Us</a></li><li><a href="contact.html" class="footer-link">Contact</a></li></ul></div>
+      </div>
+      <div class="footer-bottom"><div>&copy; 2026 Oxybott Education Inc. All rights reserved.</div></div>
+    </div>
+  </footer>
+
+  <div class="cart-drawer-overlay" id="cartDrawerOverlay">
+    <div class="cart-drawer">
+      <div class="cart-header"><h3 class="cart-title">Your STEM Cart</h3><button class="cart-close-btn" id="cartCloseBtn">&times;</button></div>
+      <div class="cart-body"><div class="cart-empty-state" id="cartEmptyState"><p>Your cart is empty.</p></div><div class="cart-items-list" id="cartDrawerItems"></div></div>
+      <div class="cart-footer"><div class="cart-summary-row cart-summary-total"><span>Subtotal:</span><span id="cartDrawerSubtotal">$0.00</span></div><button class="btn btn-orange checkout-btn" id="cartCheckoutBtn">Proceed to Checkout &rarr;</button></div>
+    </div>
+  </div>
+
+  <div class="search-modal-overlay" id="searchModalOverlay">
+    <div class="search-modal-box">
+      <div class="search-input-wrapper"><input type="text" class="search-input-field" id="searchModalInput" placeholder="Search kits by name or SKU..."></div>
+      <div class="search-results-list" id="searchResultsList"></div>
+    </div>
+  </div>
+
+  <script src="assets/js/products-data.js"></script>
+  <script src="assets/js/store-client.js"></script>
+  <script src="assets/js/main.js"></script>
+</body>
+</html>

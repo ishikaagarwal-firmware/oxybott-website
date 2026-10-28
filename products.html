@@ -1,0 +1,441 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>All STEM Kits &amp; ESP32 Robotics | Oxybott Products</title>
+  <meta name="description" content="Browse Oxybott's complete catalog of ESP32 robotics kits, IoT smart home sets, weather stations, and classroom STEM education solutions.">
+  <link rel="icon" type="image/webp" href="assets/images/oxybott_logo.webp">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap">
+  <link rel="stylesheet" href="assets/css/styles.css">
+  <style>
+    /* Catalog Specific Layout */
+    .catalog-layout {
+      display: grid;
+      grid-template-columns: 280px 1fr;
+      gap: 2.5rem;
+      padding: 3.5rem 0 6rem;
+    }
+
+    .catalog-sidebar {
+      background-color: var(--oxy-white);
+      border: 1px solid var(--oxy-gray-200);
+      border-radius: var(--radius-xl);
+      padding: 1.75rem;
+      height: fit-content;
+      position: sticky;
+      top: 100px;
+    }
+
+    .sidebar-section {
+      margin-bottom: 2rem;
+      padding-bottom: 1.5rem;
+      border-bottom: 1px solid var(--oxy-gray-100);
+    }
+
+    .sidebar-section:last-child {
+      margin-bottom: 0;
+      padding-bottom: 0;
+      border-bottom: none;
+    }
+
+    .sidebar-title {
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--oxy-navy);
+      margin-bottom: 1rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .filter-checkbox-label {
+      display: flex;
+      align-items: center;
+      gap: 0.65rem;
+      font-size: 0.875rem;
+      color: var(--oxy-gray-700);
+      cursor: pointer;
+      margin-bottom: 0.65rem;
+      user-select: none;
+    }
+
+    .filter-checkbox-label input {
+      accent-color: var(--oxy-primary);
+      width: 16px;
+      height: 16px;
+    }
+
+    .catalog-toolbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: var(--oxy-gray-50);
+      border: 1px solid var(--oxy-gray-200);
+      border-radius: var(--radius-lg);
+      padding: 0.85rem 1.25rem;
+      margin-bottom: 2rem;
+    }
+
+    .catalog-results-count {
+      font-size: 0.95rem;
+      font-weight: 600;
+      color: var(--oxy-gray-700);
+    }
+
+    .catalog-sort-select {
+      padding: 0.45rem 1rem;
+      border-radius: var(--radius-md);
+      border: 1px solid var(--oxy-gray-300);
+      background-color: var(--oxy-white);
+      font-size: 0.875rem;
+      font-weight: 600;
+      color: var(--oxy-navy);
+      outline: none;
+    }
+
+    @media (max-width: 992px) {
+      .catalog-layout {
+        grid-template-columns: 1fr;
+      }
+      .catalog-sidebar {
+        position: static;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Top Announcement Bar -->
+  <div class="announcement-bar">
+    <div class="container announcement-content">
+      <span>
+        <span class="announcement-badge">STEM KITS</span> 
+        Order $99+ for Free Priority Shipping &bull; 100% Open Source Hardware &amp; Free Tutorials
+        <a href="education.html" class="announcement-link">Education Discounts &rarr;</a>
+      </span>
+    </div>
+  </div>
+
+  <!-- Header -->
+  <header class="site-header">
+    <div class="container header-wrapper">
+      <a href="index.html" class="brand-logo-link" aria-label="Oxybott Home">
+        <img src="assets/images/oxybott_logo.webp" alt="Oxybott Logo" class="brand-logo-img">
+      </a>
+
+      <nav class="main-nav">
+        <ul class="nav-list">
+          <li class="nav-item active"><a href="products.html" class="nav-link">Products</a></li>
+          <li class="nav-item"><a href="education.html" class="nav-link">Education Solutions</a></li>
+          <li class="nav-item"><a href="software.html" class="nav-link">Software</a></li>
+          <li class="nav-item"><a href="tutorials.html" class="nav-link">Tutorials</a></li>
+          <li class="nav-item"><a href="about.html" class="nav-link">About Us</a></li>
+          <li class="nav-item"><a href="contact.html" class="nav-link">Contact</a></li>
+        </ul>
+      </nav>
+
+      <div class="header-actions">
+        <button class="action-btn search-trigger" aria-label="Search Products"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg></button>
+        <button class="action-btn cart-trigger" aria-label="Shopping Cart"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg><span class="cart-badge">0</span></button>
+        <a href="#quote" class="btn btn-orange btn-sm quote-modal-trigger">Get Free Quote</a>
+        <button class="action-btn mobile-menu-btn" id="mobileMenuToggle" aria-label="Toggle Navigation Menu"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="18" x2="21" y2="18"/></svg></button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Page Banner -->
+  <section style="background: linear-gradient(135deg, #071526 0%, #0c2340 100%); color: var(--oxy-white); padding: 4rem 0; text-align: center;">
+    <div class="container">
+      <span class="section-tag" style="background: rgba(0, 153, 255, 0.2); color: #7dd3fc;">Complete Catalog</span>
+      <h1 style="color: var(--oxy-white); margin-bottom: 0.75rem;">Oxybott STEM Robotics &amp; Coding Kits</h1>
+      <p style="color: #94a3b8; font-size: 1.1rem; max-width: 650px; margin: 0 auto;">
+        From starter electronics to 4-axis robotic arms and full smart classroom simulators. Find the perfect educational kit for your students or personal lab.
+      </p>
+    </div>
+  </section>
+
+  <!-- Main Catalog Content -->
+  <main class="container catalog-layout">
+    <!-- Sidebar Filters -->
+    <aside class="catalog-sidebar">
+      <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.5rem;">
+        <h3 style="font-size: 1.2rem; color: var(--oxy-navy);">Filters</h3>
+        <button id="resetFiltersBtn" style="font-size: 0.8rem; color: var(--oxy-primary); font-weight: 600; cursor: pointer;">Reset All</button>
+      </div>
+
+      <!-- Series Filter -->
+      <div class="sidebar-section">
+        <h4 class="sidebar-title">Series</h4>
+        <label class="filter-checkbox-label">
+          <input type="checkbox" name="seriesFilter" value="Explorer Series"> Explorer Series (8+)
+        </label>
+        <label class="filter-checkbox-label">
+          <input type="checkbox" name="seriesFilter" value="Education Series"> Education Series (Classrooms)
+        </label>
+        <label class="filter-checkbox-label">
+          <input type="checkbox" name="seriesFilter" value="Inventor Series"> Inventor Series (12+)
+        </label>
+        <label class="filter-checkbox-label">
+          <input type="checkbox" name="seriesFilter" value="Maker Series"> Maker Series (Labs)
+        </label>
+      </div>
+
+      <!-- Category Filter -->
+      <div class="sidebar-section">
+        <h4 class="sidebar-title">Category</h4>
+        <label class="filter-checkbox-label">
+          <input type="checkbox" name="categoryFilter" value="Robotics"> Robotics
+        </label>
+        <label class="filter-checkbox-label">
+          <input type="checkbox" name="categoryFilter" value="Smart IoT"> Smart IoT
+        </label>
+        <label class="filter-checkbox-label">
+          <input type="checkbox" name="categoryFilter" value="Classroom Sets"> Classroom Sets
+        </label>
+        <label class="filter-checkbox-label">
+          <input type="checkbox" name="categoryFilter" value="Electronics"> Maker Electronics
+        </label>
+      </div>
+
+      <!-- Age Filter -->
+      <div class="sidebar-section">
+        <h4 class="sidebar-title">Target Age</h4>
+        <label class="filter-checkbox-label">
+          <input type="checkbox" name="ageFilter" value="8+"> Ages 8+ (Elementary)
+        </label>
+        <label class="filter-checkbox-label">
+          <input type="checkbox" name="ageFilter" value="10+"> Ages 10+ (Middle School)
+        </label>
+        <label class="filter-checkbox-label">
+          <input type="checkbox" name="ageFilter" value="12+"> Ages 12+ (High School)
+        </label>
+        <label class="filter-checkbox-label">
+          <input type="checkbox" name="ageFilter" value="14+"> Ages 14+ (Makers &amp; Industry)
+        </label>
+      </div>
+    </aside>
+
+    <!-- Product Grid Area -->
+    <section>
+      <!-- Toolbar -->
+      <div class="catalog-toolbar">
+        <div class="catalog-results-count" id="catalogResultsCount">Showing 15 kits</div>
+        <div style="display: flex; align-items: center; gap: 0.75rem;">
+          <label for="catalogSortSelect" style="font-size: 0.85rem; font-weight: 600; color: var(--oxy-gray-600);">Sort By:</label>
+          <select class="catalog-sort-select" id="catalogSortSelect" aria-label="Sort products by">
+            <option value="featured">Featured</option>
+            <option value="price-asc">Price: Low to High</option>
+            <option value="price-desc">Price: High to Low</option>
+            <option value="rating">Highest Rated</option>
+          </select>
+        </div>
+      </div>
+
+      <!-- Dynamic Grid -->
+      <div class="product-grid" id="catalogGrid">
+        <!-- Rendered dynamically by script -->
+      </div>
+    </section>
+  </main>
+
+  <!-- Site Footer -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-top">
+        <div class="footer-brand-col">
+          <a href="index.html">
+            <img src="assets/images/oxybott_logo.webp" alt="Oxybott" class="brand-logo-img" loading="lazy" decoding="async">
+          </a>
+          <p class="footer-tagline">
+            Oxybott is an international leader in ESP32-powered STEM kits, bionic robotics, and comprehensive classroom solutions for educators and makers.
+          </p>
+        </div>
+        <div class="footer-col">
+          <h4 class="footer-col-title">STEM Kits</h4>
+          <ul class="footer-links-list">
+            <li><a href="products.html?series=Explorer+Series" class="footer-link">Explorer Series</a></li>
+            <li><a href="products.html?series=Education+Series" class="footer-link">Education Series</a></li>
+            <li><a href="products.html?series=Inventor+Series" class="footer-link">Inventor Robotics</a></li>
+            <li><a href="products.html?series=Maker+Series" class="footer-link">Maker Series</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4 class="footer-col-title">Education</h4>
+          <ul class="footer-links-list">
+            <li><a href="education.html" class="footer-link">Classroom Solutions</a></li>
+            <li><a href="education.html#sample" class="footer-link">Request Free Teacher Sample</a></li>
+            <li><a href="education.html#discounts" class="footer-link">Educational Discounts</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4 class="footer-col-title">Resources</h4>
+          <ul class="footer-links-list">
+            <li><a href="software.html" class="footer-link">OxyCode IDE</a></li>
+            <li><a href="tutorials.html" class="footer-link">Video Tutorials</a></li>
+            <li><a href="tutorials.html#wiki" class="footer-link">Online Documentation</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4 class="footer-col-title">Company</h4>
+          <ul class="footer-links-list">
+            <li><a href="about.html" class="footer-link">About Oxybott</a></li>
+            <li><a href="contact.html" class="footer-link">Contact Support</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <div>&copy; 2026 Oxybott Education Inc. All rights reserved.</div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Modals & Drawers -->
+  <div class="cart-drawer-overlay" id="cartDrawerOverlay">
+    <div class="cart-drawer">
+      <div class="cart-header">
+        <h3 class="cart-title">Your STEM Cart</h3>
+        <button class="cart-close-btn" id="cartCloseBtn">&times;</button>
+      </div>
+      <div class="cart-body">
+        <div class="cart-empty-state" id="cartEmptyState"><p>Your cart is empty.</p></div>
+        <div class="cart-items-list" id="cartDrawerItems"></div>
+      </div>
+      <div class="cart-footer">
+        <div class="cart-summary-row cart-summary-total"><span>Subtotal:</span><span id="cartDrawerSubtotal">$0.00</span></div>
+        <button class="btn btn-orange checkout-btn" id="cartCheckoutBtn">Proceed to Checkout &rarr;</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="search-modal-overlay" id="searchModalOverlay">
+    <div class="search-modal-box">
+      <div class="search-input-wrapper">
+        <input type="text" class="search-input-field" id="searchModalInput" placeholder="Search kits by name or SKU...">
+      </div>
+      <div class="search-results-list" id="searchResultsList"></div>
+    </div>
+  </div>
+
+  <div class="search-modal-overlay" id="quoteModalOverlay">
+    <div class="search-modal-box" style="padding: 2rem;">
+      <h3 style="color: var(--oxy-navy); margin-bottom: 1rem;">Request Free School Quote</h3>
+      <p style="font-size: 0.9rem; color: var(--oxy-gray-600); margin-bottom: 1rem;">Fill out our education request for volume discounts or evaluation samples.</p>
+      <form id="quoteRequestForm" style="display: flex; flex-direction: column; gap: 0.75rem;">
+        <input type="text" placeholder="Full Name" required style="padding: 0.65rem; border: 1px solid #ccc; border-radius: 6px;">
+        <input type="email" placeholder="Work Email" required style="padding: 0.65rem; border: 1px solid #ccc; border-radius: 6px;">
+        <input type="text" placeholder="School Name" required style="padding: 0.65rem; border: 1px solid #ccc; border-radius: 6px;">
+        <button type="submit" class="btn btn-orange">Submit Request &rarr;</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- Core Scripts -->
+  <script src="assets/js/products-data.js"></script>
+  <script src="assets/js/store-client.js"></script>
+  <script src="assets/js/main.js"></script>
+  <script>
+    // Catalog Filtering Logic
+    document.addEventListener('DOMContentLoaded', () => {
+      const grid = document.getElementById('catalogGrid');
+      const countEl = document.getElementById('catalogResultsCount');
+      const sortSelect = document.getElementById('catalogSortSelect');
+      const resetBtn = document.getElementById('resetFiltersBtn');
+
+      // Check URL query parameters (e.g. ?series=Explorer+Series)
+      const urlParams = new URLSearchParams(window.location.search);
+      const urlSeries = urlParams.get('series');
+      if (urlSeries) {
+        document.querySelectorAll('input[name="seriesFilter"]').forEach(cb => {
+          if (cb.value.toLowerCase() === urlSeries.toLowerCase()) cb.checked = true;
+        });
+      }
+
+      function filterAndRender() {
+        if (typeof OXYBOTT_PRODUCTS === 'undefined') return;
+
+        const selectedSeries = Array.from(document.querySelectorAll('input[name="seriesFilter"]:checked')).map(cb => cb.value);
+        const selectedCategories = Array.from(document.querySelectorAll('input[name="categoryFilter"]:checked')).map(cb => cb.value);
+        const selectedAges = Array.from(document.querySelectorAll('input[name="ageFilter"]:checked')).map(cb => cb.value);
+
+        let filtered = OXYBOTT_PRODUCTS.filter(p => {
+          if (selectedSeries.length > 0 && !selectedSeries.includes(p.series)) return false;
+          if (selectedCategories.length > 0 && !selectedCategories.includes(p.category)) return false;
+          if (selectedAges.length > 0 && !selectedAges.some(age => (p.age && p.age.includes(age)))) return false;
+          return true;
+        });
+
+        // Sort
+        const sortVal = sortSelect.value;
+        if (sortVal === 'price-asc') filtered.sort((a, b) => a.price - b.price);
+        if (sortVal === 'price-desc') filtered.sort((a, b) => b.price - a.price);
+        if (sortVal === 'rating') filtered.sort((a, b) => b.rating - a.rating);
+
+        countEl.textContent = `Showing ${filtered.length} of ${OXYBOTT_PRODUCTS.length} kits`;
+
+        if (filtered.length === 0) {
+          grid.innerHTML = `
+            <div style="grid-column: 1 / -1; padding: 4rem; text-align: center; color: var(--oxy-gray-500);">
+              <h3>No matching products found</h3>
+              <p style="margin-top: 0.5rem;">Try unchecking some filters or resetting your selection.</p>
+            </div>
+          `;
+          return;
+        }
+
+        grid.innerHTML = filtered.map(p => `
+          <div class="product-card" data-category="${p.category}" data-series="${p.series}">
+            <div class="product-media">
+              ${p.badge ? `<span class="product-badge ${(p.badge === 'Bestseller' || p.badge === 'Educator Choice') ? 'orange' : (p.badge === 'New' ? 'purple' : '')}">${p.badge}</span>` : ''}
+              <img src="${p.image}" alt="${p.shortName}" class="product-img" onerror="this.src='assets/images/oxybott_logo.webp'" loading="lazy" decoding="async">
+            </div>
+            <div class="product-card-body">
+              <div class="product-meta-row">
+                <span class="product-series-tag">${p.series}</span>
+                <span class="product-rating">&#9733; ${p.rating} (${p.reviewsCount})</span>
+              </div>
+              <h3 class="product-title">
+                <a href="product-detail.html?id=${p.id}">${p.name}</a>
+              </h3>
+              <div class="product-age-chip">&#127891; ${p.age || 'All Ages'}</div>
+              <div class="product-price-row">
+                <span class="product-price">${window.StoreClient ? window.StoreClient.formatPrice(p.price) : `$${p.price.toFixed(2)}`}</span>
+                ${(p.originalPrice && p.originalPrice > p.price) ? `<span class="product-original-price">${window.StoreClient ? window.StoreClient.formatPrice(p.originalPrice) : `$${p.originalPrice.toFixed(2)}`}</span>` : ''}
+              </div>
+              <div class="product-actions">
+                <button class="btn btn-primary btn-sm add-to-cart-btn" data-id="${p.id}">Add to Cart</button>
+                <a href="product-detail.html?id=${p.id}" class="btn btn-outline btn-sm">Details</a>
+              </div>
+            </div>
+          </div>
+        `).join('');
+
+        // Re-bind Add to Cart buttons
+        grid.querySelectorAll('.add-to-cart-btn').forEach(btn => {
+          btn.addEventListener('click', (e) => {
+            e.preventDefault();
+            const id = btn.getAttribute('data-id');
+            if (window.CartState) window.CartState.addItem(id, 1);
+          });
+        });
+      }
+
+      document.querySelectorAll('input[type="checkbox"]').forEach(cb => cb.addEventListener('change', filterAndRender));
+      sortSelect.addEventListener('change', filterAndRender);
+      resetBtn.addEventListener('click', () => {
+        document.querySelectorAll('input[type="checkbox"]').forEach(cb => cb.checked = false);
+        filterAndRender();
+      });
+
+      filterAndRender();
+
+      // Listen for database loaded event
+      document.addEventListener('oxybott:data-ready', () => {
+        filterAndRender();
+      });
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>404 - Page Not Found | Oxybott STEM Education</title>
+  <meta name="description" content="The page or STEM resource you are looking for does not exist or has been moved.">
+  <link rel="icon" type="image/webp" href="assets/images/oxybott_logo.webp">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Space+Grotesk:wght@600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/styles.css">
+  <style>
+    .not-found-container {
+      min-height: 70vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 4rem 1.5rem;
+    }
+    .not-found-code {
+      font-family: var(--font-heading);
+      font-size: 7rem;
+      font-weight: 800;
+      color: var(--oxy-primary);
+      line-height: 1;
+      margin-bottom: 1rem;
+      background: linear-gradient(135deg, var(--oxy-primary) 0%, var(--oxy-orange) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    .not-found-title {
+      font-size: 2rem;
+      color: var(--oxy-navy);
+      margin-bottom: 1rem;
+    }
+    .not-found-desc {
+      font-size: 1.1rem;
+      color: var(--oxy-gray-600);
+      max-width: 520px;
+      margin: 0 auto 2.5rem;
+      line-height: 1.6;
+    }
+    .not-found-actions {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Top Announcement Bar -->
+  <div class="announcement-bar">
+    <div class="container announcement-content">
+      <span>NEW ESP32 EDUCATION SOLUTIONS INNOVATOR &bull; Focus on Smart Robotics &amp; Coding Kits!</span>
+      <a href="education.html" class="announcement-link">Education Grants &rarr;</a>
+    </div>
+  </div>
+
+  <!-- Header -->
+  <header class="site-header">
+    <div class="container header-container">
+      <a href="index.html" class="brand-logo" aria-label="Oxybott Home">
+        <img src="assets/images/oxybott_logo.webp" alt="Oxybott Logo" class="brand-logo-img">
+      </a>
+      <nav class="main-nav" aria-label="Primary Navigation">
+        <ul class="nav-list">
+          <li class="nav-item"><a href="index.html" class="nav-link">Home</a></li>
+          <li class="nav-item"><a href="products.html" class="nav-link">All Products</a></li>
+          <li class="nav-item"><a href="education.html" class="nav-link">Education Solutions</a></li>
+          <li class="nav-item"><a href="software.html" class="nav-link">Software</a></li>
+          <li class="nav-item"><a href="tutorials.html" class="nav-link">Tutorials</a></li>
+          <li class="nav-item"><a href="contact.html" class="nav-link">Contact</a></li>
+        </ul>
+      </nav>
+      <div class="header-actions">
+        <a href="contact.html" class="btn btn-primary btn-sm">Get Free Quote</a>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main 404 Content -->
+  <main class="not-found-container container">
+    <div class="not-found-code">404</div>
+    <h1 class="not-found-title">Page or Kit Not Found</h1>
+    <p class="not-found-desc">
+      The robot kit, tutorial, or resource page you requested may have moved, been renamed, or is currently undergoing classroom updates.
+    </p>
+    <div class="not-found-actions">
+      <a href="index.html" class="btn btn-primary">Return to Homepage</a>
+      <a href="products.html" class="btn btn-outline">Explore Product Catalog</a>
+      <a href="contact.html" class="btn btn-outline">Contact STEM Support</a>
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-bottom" style="text-align: center; padding: 2rem 0; border-top: 1px solid var(--oxy-gray-200);">
+        <div>&copy; 2026 Oxybott Education Inc. All rights reserved. Professional STEM &amp; ESP32 Robotics Solutions.</div>
+      </div>
+    </div>
+  </footer>
+
+</body>
+</html>

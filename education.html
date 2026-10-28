@@ -1,0 +1,462 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>STEM Education Solutions &amp; Classroom Kits | Oxybott</title>
+  <meta name="description" content="Turnkey STEM education solutions for schools and districts. Modular magnetic classroom display boards, anti-reverse wiring, teacher slides, and CSTA/NGSS aligned lesson plans.">
+  <link rel="icon" type="image/webp" href="assets/images/oxybott_logo.webp">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap">
+  <link rel="stylesheet" href="assets/css/styles.css">
+  <style>
+    .edu-hero {
+      background: radial-gradient(circle at 75% 20%, rgba(0, 153, 255, 0.12) 0%, transparent 50%),
+                  linear-gradient(135deg, #071526 0%, #0c2340 100%);
+      color: var(--oxy-white);
+      padding: 5rem 0 6rem;
+      text-align: center;
+    }
+
+    .edu-cards-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2rem;
+      margin-top: -3rem;
+      position: relative;
+      z-index: 10;
+    }
+
+    .edu-highlight-card {
+      background-color: var(--oxy-white);
+      border: 1px solid var(--oxy-gray-200);
+      border-radius: var(--radius-xl);
+      padding: 2.25rem;
+      box-shadow: var(--shadow-xl);
+      transition: all var(--transition-normal);
+    }
+
+    .edu-highlight-card:hover {
+      transform: translateY(-8px);
+      border-color: var(--oxy-primary);
+    }
+
+    .edu-icon-badge {
+      width: 52px;
+      height: 52px;
+      border-radius: var(--radius-lg);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.5rem;
+      margin-bottom: 1.25rem;
+    }
+
+    .classroom-showcase-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      align-items: center;
+      gap: 4rem;
+      padding: 5rem 0;
+      border-bottom: 1px solid var(--oxy-gray-200);
+    }
+
+    .classroom-showcase-row:nth-child(even) {
+      direction: rtl;
+    }
+
+    .classroom-showcase-row:nth-child(even) > * {
+      direction: ltr;
+    }
+
+    .standards-badge-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+      margin-top: 1.5rem;
+    }
+
+    .standard-chip {
+      background: var(--oxy-gray-100);
+      border: 1px solid var(--oxy-gray-300);
+      border-radius: var(--radius-full);
+      padding: 0.35rem 0.9rem;
+      font-size: 0.85rem;
+      font-weight: 700;
+      color: var(--oxy-navy);
+    }
+
+    @media (max-width: 992px) {
+      .edu-cards-grid { grid-template-columns: 1fr; margin-top: 2rem; }
+      .classroom-showcase-row { grid-template-columns: 1fr; gap: 2rem; }
+      .classroom-showcase-row:nth-child(even) { direction: ltr; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Top Announcement Bar -->
+  <div class="announcement-bar">
+    <div class="container announcement-content">
+      <span>
+        <span class="announcement-badge">EDUCATORS</span> 
+        Special 15% - 30% School District Volume Discounts &bull; Free Teacher Training Webinars
+        <a href="#trial" class="announcement-link">Apply for Free Sample Kit &rarr;</a>
+      </span>
+    </div>
+  </div>
+
+  <!-- Header -->
+  <header class="site-header">
+    <div class="container header-wrapper">
+      <a href="index.html" class="brand-logo-link" aria-label="Oxybott Home">
+        <img src="assets/images/oxybott_logo.webp" alt="Oxybott Logo" class="brand-logo-img">
+      </a>
+
+      <nav class="main-nav">
+        <ul class="nav-list">
+          <li class="nav-item"><a href="products.html" class="nav-link">Products</a></li>
+          <li class="nav-item active"><a href="education.html" class="nav-link">Education Solutions</a></li>
+          <li class="nav-item"><a href="software.html" class="nav-link">Software</a></li>
+          <li class="nav-item"><a href="tutorials.html" class="nav-link">Tutorials</a></li>
+          <li class="nav-item"><a href="about.html" class="nav-link">About Us</a></li>
+          <li class="nav-item"><a href="contact.html" class="nav-link">Contact</a></li>
+        </ul>
+      </nav>
+
+      <div class="header-actions">
+        <button class="action-btn search-trigger" aria-label="Search Products"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg></button>
+        <button class="action-btn cart-trigger" aria-label="Shopping Cart"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg><span class="cart-badge">0</span></button>
+        <a href="#quote" class="btn btn-orange btn-sm quote-modal-trigger">Get Free Quote</a>
+        <button class="action-btn mobile-menu-btn" id="mobileMenuToggle" aria-label="Toggle Navigation Menu"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="18" x2="21" y2="18"/></svg></button>
+      </div>
+    </div>
+  </header>
+
+  <main id="mainContent">
+  <!-- Hero -->
+  <section class="edu-hero">
+    <div class="container container-narrow">
+      <span class="section-tag" style="background: rgba(0, 153, 255, 0.2); color: #7dd3fc;">Turnkey Classroom STEM</span>
+      <h1 style="color: var(--oxy-white); margin-bottom: 1.25rem;">Empower Teachers. Inspire Every Student.</h1>
+      <p style="color: #94a3b8; font-size: 1.2rem; line-height: 1.6;">
+        Oxybott Education Solutions combine hands-on modular hardware, anti-reverse safe wiring, teacher-ready slides, and standards-aligned STEM curricula for Grades 3 through 12.
+      </p>
+      <div style="margin-top: 2rem; display: flex; justify-content: center; gap: 1rem; flex-wrap: wrap;">
+        <a href="#trial" class="btn btn-orange btn-lg quote-modal-trigger">Request Free Teacher Sample Kit &rarr;</a>
+        <a href="#showcase" class="btn btn-outline-white btn-lg">Explore Education Series</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Highlight Pillars Grid -->
+  <div class="container">
+    <div class="edu-cards-grid">
+      <div class="edu-highlight-card">
+        <div class="edu-icon-badge" style="background: var(--oxy-primary-light); color: var(--oxy-primary);">&#128397;</div>
+        <h3 style="margin-bottom: 0.5rem;">Magnetic Classroom System</h3>
+        <p style="font-size: 0.9rem; color: var(--oxy-gray-600); line-height: 1.6;">
+          Demonstrate circuits directly on your classroom whiteboard with our patented magnetic module holders and large-print schematics.
+        </p>
+      </div>
+
+      <div class="edu-highlight-card">
+        <div class="edu-icon-badge" style="background: var(--oxy-orange-light); color: var(--oxy-orange);">&#128196;</div>
+        <h3 style="margin-bottom: 0.5rem;">Ready-to-Teach Lesson Plans</h3>
+        <p style="font-size: 0.9rem; color: var(--oxy-gray-600); line-height: 1.6;">
+          Save hundreds of planning hours. Each kit comes with editable PowerPoint lesson slides, student experiment worksheets, and grading rubrics.
+        </p>
+      </div>
+
+      <div class="edu-highlight-card">
+        <div class="edu-icon-badge" style="background: #ecfdf5; color: var(--oxy-green);">&#9881;</div>
+        <h3 style="margin-bottom: 0.5rem;">Anti-Reverse Easy-Plug</h3>
+        <p style="font-size: 0.9rem; color: var(--oxy-gray-600); line-height: 1.6;">
+          Color-coded 4-pin RJ11 snap connectors prevent incorrect wiring, short-circuits, and student frustration during fast-paced 45-minute periods.
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Classroom Showcase Section -->
+  <section class="container" id="showcase" style="padding-top: 4rem; padding-bottom: 5rem;">
+    <!-- Showcase 1: Smart Home Classroom Display -->
+    <div class="classroom-showcase-row">
+      <div>
+        <span class="section-tag">Year 1 &bull; Level 1</span>
+        <h2 style="margin-bottom: 1rem;">Oxybott QE023 Smart Home Classroom Kit</h2>
+        <p style="font-size: 1.05rem; color: var(--oxy-gray-600); line-height: 1.6; margin-bottom: 1.5rem;">
+          Designed specifically for classroom lab groups of 1-2 students. Contains a complete smart living ecosystem with RFID door locks, ambient air quality monitors, smart lights, and voice-assisted actuators.
+        </p>
+        <ul style="display: flex; flex-direction: column; gap: 0.75rem; margin-bottom: 2rem;">
+          <li style="display: flex; gap: 0.65rem; font-size: 0.95rem; color: var(--oxy-gray-700);">
+            <strong style="color: var(--oxy-primary);">&#10003;</strong> 24 structured 45-minute lesson units with student journals
+          </li>
+          <li style="display: flex; gap: 0.65rem; font-size: 0.95rem; color: var(--oxy-gray-700);">
+            <strong style="color: var(--oxy-primary);">&#10003;</strong> Sturdy stackable educator storage container with custom tool foam
+          </li>
+          <li style="display: flex; gap: 0.65rem; font-size: 0.95rem; color: var(--oxy-gray-700);">
+            <strong style="color: var(--oxy-primary);">&#10003;</strong> Dual-mode ESP32 controller compatible with OxyCode &amp; Python
+          </li>
+        </ul>
+        <div class="standards-badge-list">
+          <span class="standard-chip">CSTA 2-CS-02</span>
+          <span class="standard-chip">NGSS MS-ETS1</span>
+          <span class="standard-chip">Cambridge Primary ICT</span>
+        </div>
+        <div style="margin-top: 2rem;">
+          <a href="product-detail.html?id=qe023" class="btn btn-primary">View Kit Specifications &rarr;</a>
+        </div>
+      </div>
+      <div>
+        <img src="assets/images/qe023-smart-home-edu.png" alt="Smart Home Education Kit" style="width: 100%; border-radius: var(--radius-xl); box-shadow: var(--shadow-lg);" loading="lazy" decoding="async">
+      </div>
+    </div>
+
+    <!-- Showcase 2: Intelligent Transportation -->
+    <div class="classroom-showcase-row">
+      <div>
+        <span class="section-tag orange">Year 2 &bull; Level 2</span>
+        <h2 style="margin-bottom: 1rem;">Oxybott QE036 Intelligent Transportation Kit</h2>
+        <p style="font-size: 1.05rem; color: var(--oxy-gray-600); line-height: 1.6; margin-bottom: 1.5rem;">
+          Take students into civil engineering and smart municipal infrastructure. Students program traffic signal sync algorithms, automatic barrier RFID tollgates, pedestrian zebra crossing radars, and automated parking stalls.
+        </p>
+        <ul style="display: flex; flex-direction: column; gap: 0.75rem; margin-bottom: 2rem;">
+          <li style="display: flex; gap: 0.65rem; font-size: 0.95rem; color: var(--oxy-gray-700);">
+            <strong style="color: var(--oxy-orange);">&#10003;</strong> Real-world urban automation challenges &amp; algorithmic problem solving
+          </li>
+          <li style="display: flex; gap: 0.65rem; font-size: 0.95rem; color: var(--oxy-gray-700);">
+            <strong style="color: var(--oxy-orange);">&#10003;</strong> Foldable city grid simulation map included in each package
+          </li>
+        </ul>
+        <div class="standards-badge-list">
+          <span class="standard-chip">CSTA 2-DA-08</span>
+          <span class="standard-chip">NGSS MS-PS4</span>
+        </div>
+        <div style="margin-top: 2rem;">
+          <a href="product-detail.html?id=qe036" class="btn btn-orange">View Kit Specifications &rarr;</a>
+        </div>
+      </div>
+      <div>
+        <img src="assets/images/qe036-transportation-kit.jpg" alt="Transportation Kit" style="width: 100%; border-radius: var(--radius-xl); box-shadow: var(--shadow-lg);" loading="lazy" decoding="async">
+      </div>
+    </div>
+
+    <!-- Showcase 3: Smart Factory -->
+    <div class="classroom-showcase-row">
+      <div>
+        <span class="section-tag" style="background: #f3e8ff; color: var(--oxy-purple);">Year 3 &bull; Industry 4.0</span>
+        <h2 style="margin-bottom: 1rem;">Oxybott QE037 Smart Factory Simulation Kit</h2>
+        <p style="font-size: 1.05rem; color: var(--oxy-gray-600); line-height: 1.6; margin-bottom: 1.5rem;">
+          Bring real industrial manufacturing into your secondary school laboratory. Equipped with a motorized conveyor belt, color-sensing pneumatic diverters, optical limit switches, and cloud MQTT telemetry dashboards.
+        </p>
+        <div class="standards-badge-list">
+          <span class="standard-chip">CSTA 3A-AP-14</span>
+          <span class="standard-chip">Mechatronics Vocational</span>
+        </div>
+        <div style="margin-top: 2rem;">
+          <a href="product-detail.html?id=qe037" class="btn btn-primary">View Kit Specifications &rarr;</a>
+        </div>
+      </div>
+      <div>
+        <img src="assets/images/qe037-smart-factory.jpg" alt="Smart Factory Kit" style="width: 100%; border-radius: var(--radius-xl); box-shadow: var(--shadow-lg);" loading="lazy" decoding="async">
+      </div>
+    </div>
+  </section>
+
+  <!-- School Trial Application Form Section -->
+  <section class="container container-narrow" id="trial" style="margin-bottom: 6rem;">
+    <div style="background-color: var(--oxy-gray-50); border: 2px solid var(--oxy-primary); border-radius: var(--radius-xl); padding: 3.5rem 2.5rem; box-shadow: var(--shadow-lg);">
+      <div style="text-align: center; margin-bottom: 2rem;">
+        <span class="section-tag">Educator Program</span>
+        <h2 style="margin-top: 0.5rem;">Apply for a Free School Trial Evaluation Kit</h2>
+        <p style="color: var(--oxy-gray-600); margin-top: 0.5rem;">
+          Qualifying K-12 STEM teachers, curriculum directors, and school principals are eligible to receive a complimentary Oxybott trial kit and curriculum bundle for 30-day classroom review.
+        </p>
+      </div>
+
+      <form id="educationTrialForm" style="display: flex; flex-direction: column; gap: 1.25rem;">
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1.25rem;">
+          <div>
+            <label for="trialEducatorName" style="font-size: 0.85rem; font-weight: 700; color: var(--oxy-navy);">Educator Full Name *</label>
+            <input type="text" id="trialEducatorName" required placeholder="e.g. Dr. Emily Watson" style="width: 100%; padding: 0.8rem; border: 1px solid var(--oxy-gray-300); border-radius: var(--radius-md); margin-top: 0.35rem;">
+          </div>
+          <div>
+            <label for="trialEmail" style="font-size: 0.85rem; font-weight: 700; color: var(--oxy-navy);">Institutional Email (.edu/.org preferred) *</label>
+            <input type="email" id="trialEmail" required placeholder="emily@lincolnschool.edu" style="width: 100%; padding: 0.8rem; border: 1px solid var(--oxy-gray-300); border-radius: var(--radius-md); margin-top: 0.35rem;">
+          </div>
+        </div>
+
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1.25rem;">
+          <div>
+            <label for="trialSchoolName" style="font-size: 0.85rem; font-weight: 700; color: var(--oxy-navy);">School / District Name *</label>
+            <input type="text" id="trialSchoolName" required placeholder="Lincoln Unified School District" style="width: 100%; padding: 0.8rem; border: 1px solid var(--oxy-gray-300); border-radius: var(--radius-md); margin-top: 0.35rem;">
+          </div>
+          <div>
+            <label for="trialRole" style="font-size: 0.85rem; font-weight: 700; color: var(--oxy-navy);">Your Role / Title</label>
+            <input type="text" id="trialRole" placeholder="STEM Coordinator / CS Teacher" style="width: 100%; padding: 0.8rem; border: 1px solid var(--oxy-gray-300); border-radius: var(--radius-md); margin-top: 0.35rem;">
+          </div>
+        </div>
+
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1.25rem;">
+          <div>
+            <label for="trialGradeLevel" style="font-size: 0.85rem; font-weight: 700; color: var(--oxy-navy);">Target Grade Level</label>
+            <select id="trialGradeLevel" style="width: 100%; padding: 0.8rem; border: 1px solid var(--oxy-gray-300); border-radius: var(--radius-md); margin-top: 0.35rem;">
+              <option>Elementary School (Grades 3 - 5)</option>
+              <option>Middle School (Grades 6 - 8)</option>
+              <option>High School (Grades 9 - 12)</option>
+              <option>Vocational / University / Maker Space</option>
+            </select>
+          </div>
+          <div>
+            <label for="trialKit" style="font-size: 0.85rem; font-weight: 700; color: var(--oxy-navy);">Desired Evaluation Kit</label>
+            <select id="trialKit" style="width: 100%; padding: 0.8rem; border: 1px solid var(--oxy-gray-300); border-radius: var(--radius-md); margin-top: 0.35rem;">
+              <option>QE023 Smart Home Classroom Kit</option>
+              <option>QD022 4-DOF Robotic Arm Kit</option>
+              <option>QD001 Omni-Wheel Coding Car Kit</option>
+              <option>QE036 Intelligent Transportation Kit</option>
+              <option>QE037 Smart Factory Simulator</option>
+            </select>
+          </div>
+        </div>
+
+        <div>
+          <label for="trialAddress" style="font-size: 0.85rem; font-weight: 700; color: var(--oxy-navy);">Shipping Address for School Kit Delivery *</label>
+          <textarea id="trialAddress" rows="2" required placeholder="Street address, City, State/Province, Postal Code, Country" style="width: 100%; padding: 0.8rem; border: 1px solid var(--oxy-gray-300); border-radius: var(--radius-md); margin-top: 0.35rem;"></textarea>
+        </div>
+
+        <button type="submit" id="trialSubmitBtn" class="btn btn-primary btn-lg" style="margin-top: 0.75rem;">Submit Evaluation Application &rarr;</button>
+      </form>
+    </div>
+  </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-top">
+        <div class="footer-brand-col">
+          <a href="index.html">
+            <img src="assets/images/oxybott_logo.webp" alt="Oxybott" class="brand-logo-img" loading="lazy" decoding="async">
+          </a>
+          <p class="footer-tagline">Oxybott is an international leader in ESP32-powered STEM kits and classroom solutions.</p>
+        </div>
+        <div class="footer-col">
+          <h4 class="footer-col-title">STEM Kits</h4>
+          <ul class="footer-links-list">
+            <li><a href="products.html" class="footer-link">All Products</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4 class="footer-col-title">Education</h4>
+          <ul class="footer-links-list">
+            <li><a href="education.html" class="footer-link">Classroom Solutions</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4 class="footer-col-title">Resources</h4>
+          <ul class="footer-links-list">
+            <li><a href="software.html" class="footer-link">OxyCode IDE</a></li>
+            <li><a href="tutorials.html" class="footer-link">Tutorials</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4 class="footer-col-title">Company</h4>
+          <ul class="footer-links-list">
+            <li><a href="about.html" class="footer-link">About Us</a></li>
+            <li><a href="contact.html" class="footer-link">Contact</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <div>&copy; 2026 Oxybott Education Inc. All rights reserved.</div>
+      </div>
+    </div>
+  </footer>
+
+  <div class="cart-drawer-overlay" id="cartDrawerOverlay">
+    <div class="cart-drawer">
+      <div class="cart-header"><h3 class="cart-title">Your STEM Cart</h3><button class="cart-close-btn" id="cartCloseBtn">&times;</button></div>
+      <div class="cart-body"><div class="cart-empty-state" id="cartEmptyState"><p>Your cart is empty.</p></div><div class="cart-items-list" id="cartDrawerItems"></div></div>
+      <div class="cart-footer">
+        <div class="cart-summary-row cart-summary-total"><span>Subtotal:</span><span id="cartDrawerSubtotal">$0.00</span></div>
+        <button class="btn btn-orange checkout-btn" id="cartCheckoutBtn">Proceed to Checkout &rarr;</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="search-modal-overlay" id="searchModalOverlay">
+    <div class="search-modal-box">
+      <div class="search-input-wrapper"><input type="text" class="search-input-field" id="searchModalInput" placeholder="Search kits by name or SKU..."></div>
+      <div class="search-results-list" id="searchResultsList"></div>
+    </div>
+  </div>
+
+  <script src="assets/js/products-data.js"></script>
+  <script src="assets/js/store-client.js"></script>
+  <script src="assets/js/main.js"></script>
+  <script>
+    document.getElementById('educationTrialForm')?.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const form = e.target;
+      const submitBtn = document.getElementById('trialSubmitBtn');
+      const educatorName = document.getElementById('trialEducatorName')?.value.trim();
+      const email = document.getElementById('trialEmail')?.value.trim();
+      const schoolName = document.getElementById('trialSchoolName')?.value.trim();
+      const role = document.getElementById('trialRole')?.value.trim();
+      const grade = document.getElementById('trialGradeLevel')?.value;
+      const kit = document.getElementById('trialKit')?.value;
+      const address = document.getElementById('trialAddress')?.value.trim();
+
+      if (!educatorName || !email || !schoolName || !address) {
+        showToast("Please fill in all required fields.", true);
+        return;
+      }
+
+      if (submitBtn) {
+        submitBtn.disabled = true;
+        submitBtn.textContent = "Submitting Application...";
+      }
+
+      try {
+        const res = await fetch('/api/inquiries', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            type: 'trial',
+            name: educatorName,
+            email: email,
+            organization: schoolName,
+            subject: `School Trial Application: ${kit}`,
+            message: `Evaluation application for ${kit}. Grade level: ${grade}. Title: ${role || 'Educator'}. Shipping to: ${address}`,
+            details: {
+              educatorName,
+              schoolName,
+              role,
+              grade,
+              kit,
+              shippingAddress: address
+            }
+          })
+        });
+
+        const data = await res.json();
+        if (res.ok && data.success) {
+          showToast(data.message || "Trial application submitted! Our education specialist will review and verify your school credentials.");
+          form.reset();
+        } else {
+          showToast(data.error || "Failed to submit trial application. Please check your information.", true);
+        }
+      } catch (err) {
+        showToast("Network error. Please verify your connection and try again.", true);
+      } finally {
+        if (submitBtn) {
+          submitBtn.disabled = false;
+          submitBtn.textContent = "Submit Evaluation Application \u2192";
+        }
+      }
+    });
+  </script>
+</body>
+</html>

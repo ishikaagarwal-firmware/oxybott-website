@@ -1,0 +1,663 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title id="pdpMetaTitle">Oxybott STEM Kit Detail</title>
+  <meta name="description" id="pdpMetaDesc" content="Explore specifications, curriculum guides, and code downloads for Oxybott educational STEM robotics kits.">
+  <link rel="icon" type="image/webp" href="assets/images/oxybott_logo.webp">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap">
+  <link rel="stylesheet" href="assets/css/styles.css">
+  <style>
+    /* Product Detail Specific Styles */
+    .pdp-breadcrumb {
+      padding: 1.25rem 0;
+      font-size: 0.85rem;
+      color: var(--oxy-gray-500);
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .pdp-breadcrumb a:hover {
+      color: var(--oxy-primary);
+    }
+
+    .pdp-main-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 3.5rem;
+      margin-bottom: 5rem;
+    }
+
+    .pdp-gallery-card {
+      background: radial-gradient(circle, #f8fafc 0%, #edf2f7 100%);
+      border: 1px solid var(--oxy-gray-200);
+      border-radius: var(--radius-xl);
+      padding: 3rem 2rem;
+      text-align: center;
+      position: sticky;
+      top: 100px;
+    }
+
+    .pdp-main-img {
+      max-width: 100%;
+      max-height: 420px;
+      margin: 0 auto;
+      object-fit: contain;
+      filter: drop-shadow(0 15px 25px rgba(12, 35, 64, 0.12));
+    }
+
+    .pdp-info {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .pdp-title {
+      font-size: clamp(1.85rem, 3vw, 2.35rem);
+      color: var(--oxy-navy);
+      line-height: 1.25;
+      margin-bottom: 0.75rem;
+    }
+
+    .pdp-rating-row {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      margin-bottom: 1.25rem;
+      font-size: 0.9rem;
+    }
+
+    .pdp-price-box {
+      display: flex;
+      align-items: baseline;
+      gap: 1rem;
+      background: var(--oxy-gray-50);
+      padding: 1rem 1.5rem;
+      border-radius: var(--radius-lg);
+      margin-bottom: 1.5rem;
+      border: 1px solid var(--oxy-gray-200);
+    }
+
+    .pdp-price {
+      font-size: 2rem;
+      font-weight: 800;
+      color: var(--oxy-orange);
+      font-family: var(--font-heading);
+    }
+
+    .pdp-highlights-list {
+      display: flex;
+      flex-direction: column;
+      gap: 0.65rem;
+      margin-bottom: 2rem;
+    }
+
+    .pdp-highlight-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.65rem;
+      font-size: 0.925rem;
+      color: var(--oxy-gray-700);
+    }
+
+    .pdp-highlight-item svg {
+      width: 18px;
+      height: 18px;
+      color: var(--oxy-green);
+      flex-shrink: 0;
+      margin-top: 2px;
+    }
+
+    .pdp-order-box {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      margin-bottom: 2rem;
+    }
+
+    .qty-counter {
+      display: flex;
+      align-items: center;
+      border: 2px solid var(--oxy-gray-300);
+      border-radius: var(--radius-md);
+      overflow: hidden;
+    }
+
+    .qty-btn {
+      padding: 0.75rem 1rem;
+      background: var(--oxy-gray-100);
+      font-weight: 700;
+      font-size: 1.1rem;
+    }
+
+    .qty-btn:hover {
+      background: var(--oxy-primary-light);
+      color: var(--oxy-primary-dark);
+    }
+
+    .qty-input {
+      width: 48px;
+      text-align: center;
+      font-weight: 700;
+      border: none;
+      outline: none;
+    }
+
+    /* Tabs Layout */
+    .pdp-tabs-nav {
+      display: flex;
+      gap: 1rem;
+      border-bottom: 2px solid var(--oxy-gray-200);
+      margin-bottom: 2.5rem;
+    }
+
+    .pdp-tab-btn {
+      padding: 1rem 1.5rem;
+      font-family: var(--font-heading);
+      font-weight: 700;
+      font-size: 1.05rem;
+      color: var(--oxy-gray-500);
+      position: relative;
+      cursor: pointer;
+    }
+
+    .pdp-tab-btn.active {
+      color: var(--oxy-primary);
+    }
+
+    .pdp-tab-btn.active::after {
+      content: '';
+      position: absolute;
+      bottom: -2px;
+      left: 0;
+      right: 0;
+      height: 3px;
+      background-color: var(--oxy-primary);
+      border-radius: var(--radius-full);
+    }
+
+    .pdp-tab-pane {
+      display: none;
+    }
+
+    .pdp-tab-pane.active {
+      display: block;
+    }
+
+    .spec-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 1rem;
+    }
+
+    .spec-table tr:nth-child(even) {
+      background-color: var(--oxy-gray-50);
+    }
+
+    .spec-table td {
+      padding: 0.85rem 1.25rem;
+      border: 1px solid var(--oxy-gray-200);
+      font-size: 0.9rem;
+    }
+
+    .spec-table td:first-child {
+      font-weight: 700;
+      color: var(--oxy-navy);
+      width: 35%;
+    }
+
+    @media (max-width: 992px) {
+      .pdp-main-grid {
+        grid-template-columns: 1fr;
+      }
+      .pdp-gallery-card {
+        position: static;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Top Announcement Bar -->
+  <div class="announcement-bar">
+    <div class="container announcement-content">
+      <span>
+        <span class="announcement-badge">STEM EDUCATION</span> 
+        100% Guaranteed Genuine Oxybott Kits &bull; Free Lesson Plans Included
+        <a href="education.html" class="announcement-link">Education Grants &rarr;</a>
+      </span>
+    </div>
+  </div>
+
+  <!-- Header -->
+  <header class="site-header">
+    <div class="container header-wrapper">
+      <a href="index.html" class="brand-logo-link">
+        <img src="assets/images/oxybott_logo.webp" alt="Oxybott Logo" class="brand-logo-img">
+      </a>
+
+      <nav class="main-nav">
+        <ul class="nav-list">
+          <li class="nav-item active"><a href="products.html" class="nav-link">Products</a></li>
+          <li class="nav-item"><a href="education.html" class="nav-link">Education Solutions</a></li>
+          <li class="nav-item"><a href="software.html" class="nav-link">Software</a></li>
+          <li class="nav-item"><a href="tutorials.html" class="nav-link">Tutorials</a></li>
+          <li class="nav-item"><a href="about.html" class="nav-link">About Us</a></li>
+          <li class="nav-item"><a href="contact.html" class="nav-link">Contact</a></li>
+        </ul>
+      </nav>
+
+      <div class="header-actions">
+        <button class="action-btn search-trigger" aria-label="Search Products (Ctrl+K)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg></button>
+        <button class="action-btn cart-trigger" aria-label="Shopping Cart"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg><span class="cart-badge">0</span></button>
+        <a href="#quote" class="btn btn-orange btn-sm quote-modal-trigger">Get Free Quote</a>
+        <button class="action-btn mobile-menu-btn" id="mobileMenuToggle" aria-label="Toggle Navigation Menu"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="18" x2="21" y2="18"/></svg></button>
+      </div>
+    </div>
+  </header>
+
+  <main class="container" style="padding-top: 1rem; padding-bottom: 6rem;">
+    <!-- Breadcrumb -->
+    <div class="pdp-breadcrumb">
+      <a href="index.html">Home</a> &rsaquo;
+      <a href="products.html">Products</a> &rsaquo;
+      <span id="pdpBreadcrumbSeries">Series</span> &rsaquo;
+      <span id="pdpBreadcrumbTitle" style="color: var(--oxy-navy); font-weight: 600;">Product</span>
+    </div>
+
+    <!-- Main PDP View -->
+    <div class="pdp-main-grid">
+      <!-- Media Gallery -->
+      <div class="pdp-gallery-card">
+        <img id="pdpMainImage" src="assets/images/qd022-robot-arm.png" alt="Product Image" class="pdp-main-img" onerror="this.src='assets/images/oxybott_logo.webp'">
+        <div id="pdpThumbnails" style="display: flex; gap: 0.5rem; justify-content: center; margin-top: 1rem; flex-wrap: wrap;"></div>
+        <div style="margin-top: 1.5rem; display: flex; justify-content: center; gap: 0.75rem;">
+          <span class="product-badge" id="pdpBadgeTag">Bestseller</span>
+          <span class="product-age-chip" id="pdpAgeTag">&#127891; Ages 12+</span>
+        </div>
+      </div>
+
+      <!-- Info Column -->
+      <div class="pdp-info">
+        <div style="font-size: 0.85rem; font-weight: 700; color: var(--oxy-primary); text-transform: uppercase; margin-bottom: 0.35rem;" id="pdpSeries">Inventor Series</div>
+        <h1 class="pdp-title" id="pdpTitle">Oxybott QD022 4-DOF Programmable Robot Arm Kit</h1>
+        <div class="pdp-rating-row">
+          <span style="color: var(--oxy-yellow); font-weight: 700;" id="pdpRating">&#9733; 4.9</span>
+          <span style="color: var(--oxy-gray-500);" id="pdpReviewCount">(142 verified reviews)</span>
+          <span style="color: var(--oxy-green); font-weight: 600;">&bull; In Stock &amp; Ready to Ship</span>
+        </div>
+
+        <div class="pdp-price-box">
+          <div class="pdp-price" id="pdpPrice">$89.99</div>
+          <div style="font-size: 1.1rem; color: var(--oxy-gray-500); text-decoration: line-through;" id="pdpOriginalPrice">$109.99</div>
+          <div style="background: var(--oxy-orange-light); color: var(--oxy-orange); font-size: 0.8rem; font-weight: 700; padding: 0.2rem 0.5rem; border-radius: var(--radius-sm);">Save 18%</div>
+        </div>
+
+        <p style="font-size: 1rem; color: var(--oxy-gray-600); margin-bottom: 1.5rem; line-height: 1.6;" id="pdpDescription">
+          The Oxybott QD022 4-DOF Programmable Robot Arm Kit is engineered for high school STEM education, maker spaces, and robotics enthusiasts.
+        </p>
+
+        <h4 style="font-size: 0.95rem; margin-bottom: 0.75rem; color: var(--oxy-navy);">Core STEM Highlights:</h4>
+        <div class="pdp-highlights-list" id="pdpHighlights"></div>
+
+        <!-- Add to Cart / Order Area -->
+        <div class="pdp-order-box">
+          <div class="qty-counter">
+            <button class="qty-btn" id="qtyMinusBtn" aria-label="Decrease quantity">-</button>
+            <input type="number" id="qtyInput" class="qty-input" value="1" min="1" max="99" readonly aria-label="Product quantity">
+            <button class="qty-btn" id="qtyPlusBtn" aria-label="Increase quantity">+</button>
+          </div>
+          <button class="btn btn-primary btn-lg" id="pdpAddToCartBtn" style="flex-grow: 1;">Add to Cart &bull; <span id="pdpBtnPrice">$89.99</span></button>
+          <button class="btn btn-orange btn-lg quote-modal-trigger">School Quote</button>
+        </div>
+
+        <div style="border-top: 1px solid var(--oxy-gray-200); padding-top: 1.25rem; font-size: 0.85rem; color: var(--oxy-gray-500); display: flex; flex-direction: column; gap: 0.4rem;">
+          <div><strong>SKU:</strong> <span id="pdpSku">OXY-QD022</span></div>
+          <div><strong>Compatibility:</strong> OxyCode, Arduino IDE, MicroPython, Thonny</div>
+          <div><strong>Free Shipping:</strong> On orders over $99 worldwide</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Tabbed Detailed Sections -->
+    <div style="margin-top: 4rem;">
+      <div class="pdp-tabs-nav">
+        <button class="pdp-tab-btn active" data-tab="tabSpecs">Specifications</button>
+        <button class="pdp-tab-btn" data-tab="tabContents">What's in the Box</button>
+        <button class="pdp-tab-btn" data-tab="tabCurriculum">Curriculum &amp; Tutorials</button>
+        <button class="pdp-tab-btn" data-tab="tabSoftware">Software Downloads</button>
+      </div>
+
+      <!-- Specs Pane -->
+      <div class="pdp-tab-pane active" id="tabSpecs">
+        <h3 style="margin-bottom: 1rem;">Hardware &amp; Electrical Specifications</h3>
+        <table class="spec-table" id="pdpSpecsTable"></table>
+      </div>
+
+      <!-- Box Contents Pane -->
+      <div class="pdp-tab-pane" id="tabContents">
+        <h3 style="margin-bottom: 1rem;">Complete Packaging &amp; Component List</h3>
+        <p style="color: var(--oxy-gray-600); margin-bottom: 1.5rem;">Every component is individually labeled and packaged in high-grade anti-static compartments.</p>
+        <ul id="pdpBoxList" style="display: grid; grid-template-columns: 1fr 1fr; gap: 0.75rem;"></ul>
+      </div>
+
+      <!-- Curriculum Pane -->
+      <div class="pdp-tab-pane" id="tabCurriculum">
+        <h3 style="margin-bottom: 1rem;">Structured STEM Curriculum Units</h3>
+        <p style="color: var(--oxy-gray-600); margin-bottom: 1.5rem;">Designed for 1-2 students per kit over a 6 to 12-week course.</p>
+        <div style="display: flex; flex-direction: column; gap: 1rem;">
+          <div style="background: var(--oxy-gray-50); padding: 1.25rem; border-radius: var(--radius-md); border-left: 4px solid var(--oxy-primary);">
+            <h4 style="color: var(--oxy-navy);">Unit 1: Assembly &amp; Servo Calibration</h4>
+            <p style="font-size: 0.875rem; color: var(--oxy-gray-600); margin-top: 0.25rem;">Learn 4-axis structural dynamics, mechanical gear leverage, and zero-degree servo calibration.</p>
+          </div>
+          <div style="background: var(--oxy-gray-50); padding: 1.25rem; border-radius: var(--radius-md); border-left: 4px solid var(--oxy-orange);">
+            <h4 style="color: var(--oxy-navy);">Unit 2: OxyCode Visual Block Programming</h4>
+            <p style="font-size: 0.875rem; color: var(--oxy-gray-600); margin-top: 0.25rem;">Map dual-axis joysticks to PWM angles, display coordinates on OLED, and code autonomous pick-and-place loops.</p>
+          </div>
+          <div style="background: var(--oxy-gray-50); padding: 1.25rem; border-radius: var(--radius-md); border-left: 4px solid var(--oxy-purple);">
+            <h4 style="color: var(--oxy-navy);">Unit 3: Arduino C++ &amp; Inverse Kinematics</h4>
+            <p style="font-size: 0.875rem; color: var(--oxy-gray-600); margin-top: 0.25rem;">Transition into syntax coding. Compute trigonometric angles from X-Y-Z target coordinates in 3D workspace.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Software Downloads Pane -->
+      <div class="pdp-tab-pane" id="tabSoftware">
+        <h3 style="margin-bottom: 1rem;">Official Software &amp; Drivers</h3>
+        <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; margin-top: 1.5rem;">
+          <div style="background: var(--oxy-gray-50); padding: 1.5rem; border-radius: var(--radius-lg); text-align: center;">
+            <h4>OxyCode 2.2.1 IDE</h4>
+            <p style="font-size: 0.85rem; color: var(--oxy-gray-500); margin: 0.5rem 0 1rem;">Windows, Mac &amp; Web Editor</p>
+            <a href="software.html" class="btn btn-primary btn-sm">Download (.exe)</a>
+          </div>
+          <div style="background: var(--oxy-gray-50); padding: 1.5rem; border-radius: var(--radius-lg); text-align: center;">
+            <h4>Arduino Library &amp; Code</h4>
+            <p style="font-size: 0.85rem; color: var(--oxy-gray-500); margin: 0.5rem 0 1rem;">Includes 20+ Example Sketches</p>
+            <a href="tutorials.html" class="btn btn-outline btn-sm">Download ZIP</a>
+          </div>
+          <div style="background: var(--oxy-gray-50); padding: 1.5rem; border-radius: var(--radius-lg); text-align: center;">
+            <h4>Oxybott Mobile Controller</h4>
+            <p style="font-size: 0.85rem; color: var(--oxy-gray-500); margin: 0.5rem 0 1rem;">iOS &amp; Android BLE App</p>
+            <a href="software.html#app" class="btn btn-orange btn-sm">Get App</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- Site Footer -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-top">
+        <div class="footer-brand-col">
+          <a href="index.html">
+            <img src="assets/images/oxybott_logo.webp" alt="Oxybott" class="brand-logo-img">
+          </a>
+          <p class="footer-tagline">Oxybott is an international leader in ESP32-powered STEM kits and classroom solutions.</p>
+        </div>
+        <div class="footer-col">
+          <h4 class="footer-col-title">STEM Kits</h4>
+          <ul class="footer-links-list">
+            <li><a href="products.html" class="footer-link">All Products</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4 class="footer-col-title">Education</h4>
+          <ul class="footer-links-list">
+            <li><a href="education.html" class="footer-link">Classroom Solutions</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4 class="footer-col-title">Resources</h4>
+          <ul class="footer-links-list">
+            <li><a href="software.html" class="footer-link">OxyCode IDE</a></li>
+            <li><a href="tutorials.html" class="footer-link">Tutorials</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4 class="footer-col-title">Company</h4>
+          <ul class="footer-links-list">
+            <li><a href="about.html" class="footer-link">About Us</a></li>
+            <li><a href="contact.html" class="footer-link">Contact</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <div>&copy; 2026 Oxybott Education Inc. All rights reserved.</div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Modals & Drawers -->
+  <div class="cart-drawer-overlay" id="cartDrawerOverlay">
+    <div class="cart-drawer">
+      <div class="cart-header"><h3 class="cart-title">Your STEM Cart</h3><button class="cart-close-btn" id="cartCloseBtn">&times;</button></div>
+      <div class="cart-body"><div class="cart-empty-state" id="cartEmptyState"><p>Your cart is empty.</p></div><div class="cart-items-list" id="cartDrawerItems"></div></div>
+      <div class="cart-footer">
+        <div class="cart-summary-row cart-summary-total"><span>Subtotal:</span><span id="cartDrawerSubtotal">$0.00</span></div>
+        <button class="btn btn-orange checkout-btn" id="cartCheckoutBtn">Proceed to Checkout &rarr;</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="search-modal-overlay" id="searchModalOverlay">
+    <div class="search-modal-box">
+      <div class="search-input-wrapper"><input type="text" class="search-input-field" id="searchModalInput" placeholder="Search kits by name or SKU..."></div>
+      <div class="search-results-list" id="searchResultsList"></div>
+    </div>
+  </div>
+
+  <div class="search-modal-overlay" id="quoteModalOverlay">
+    <div class="search-modal-box" style="padding: 2rem;">
+      <h3 style="color: var(--oxy-navy); margin-bottom: 1rem;">Request Free School Quote</h3>
+      <p style="font-size: 0.9rem; color: var(--oxy-gray-600); margin-bottom: 1rem;">Fill out our education request for volume discounts or evaluation samples.</p>
+      <form id="quoteRequestForm" style="display: flex; flex-direction: column; gap: 0.75rem;">
+        <input type="text" placeholder="Full Name" required style="padding: 0.65rem; border: 1px solid #ccc; border-radius: 6px;">
+        <input type="email" placeholder="Work Email" required style="padding: 0.65rem; border: 1px solid #ccc; border-radius: 6px;">
+        <button type="submit" class="btn btn-orange">Submit Request &rarr;</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- Core Scripts -->
+  <script src="assets/js/products-data.js"></script>
+  <script src="assets/js/store-client.js"></script>
+  <script src="assets/js/main.js"></script>
+  <script>
+    function selectPdpImage(thumbEl, url) {
+      const mainImg = document.getElementById('pdpMainImage');
+      if (mainImg) mainImg.src = url;
+      const thumbs = document.querySelectorAll('#pdpThumbnails img');
+      thumbs.forEach(t => t.style.borderColor = 'var(--oxy-gray-200)');
+      if (thumbEl) thumbEl.style.borderColor = 'var(--oxy-primary)';
+    }
+
+    // Dynamic Product Detail Loader
+    async function loadProductDetail() {
+      const urlParams = new URLSearchParams(window.location.search);
+      const prodId = urlParams.get('id') || 'qd022';
+
+      let product = null;
+      if (window.StoreClient) {
+        product = await window.StoreClient.getProduct(prodId);
+      }
+      if (!product && typeof OXYBOTT_PRODUCTS !== 'undefined') {
+        product = OXYBOTT_PRODUCTS.find(p => p.id === prodId || p.slug === prodId);
+      }
+
+      if (!product) {
+        const grid = document.querySelector('.pdp-main-grid');
+        if (grid) {
+          grid.innerHTML = `
+            <div style="grid-column: 1 / -1; padding: 4rem 2rem; text-align: center; background: white; border-radius: 16px; border: 1px solid var(--oxy-gray-200); box-shadow: var(--shadow-sm);">
+              <div style="font-size: 3rem; margin-bottom: 1rem;">📦</div>
+              <h2 style="font-size: 1.75rem; color: var(--oxy-navy); margin-bottom: 0.5rem;">Product Not Available</h2>
+              <p style="color: var(--oxy-gray-600); margin-bottom: 2rem;">This STEM kit is currently unpublished, in draft status, or does not exist.</p>
+              <a href="products.html" class="btn btn-primary btn-lg">Browse Available Products &rarr;</a>
+            </div>
+          `;
+        }
+        return;
+      }
+
+      // Populate Meta & Breadcrumb
+      document.title = `${product.name} | Oxybott`;
+      const bcSeries = document.getElementById('pdpBreadcrumbSeries');
+      const bcTitle = document.getElementById('pdpBreadcrumbTitle');
+      if (bcSeries) bcSeries.textContent = product.series || 'STEM Kits';
+      if (bcTitle) bcTitle.textContent = product.shortName || product.name;
+
+      // Populate Main View
+      const mainImg = document.getElementById('pdpMainImage');
+      if (mainImg) {
+        mainImg.src = product.image;
+        mainImg.alt = product.name;
+      }
+
+      // Thumbnails
+      const thumbsContainer = document.getElementById('pdpThumbnails');
+      if (thumbsContainer && product.images && product.images.length > 1) {
+        thumbsContainer.innerHTML = product.images.map((img, i) => `
+          <img src="${img.image_url}" alt="${img.alt_text || product.name}" 
+               style="width: 60px; height: 60px; object-fit: contain; border: 2px solid ${i === 0 ? 'var(--oxy-primary)' : 'var(--oxy-gray-200)'}; border-radius: 8px; cursor: pointer; padding: 4px; background: #fff;" 
+               onclick="selectPdpImage(this, '${img.image_url}')">
+        `).join('');
+      }
+
+      const badgeEl = document.getElementById('pdpBadgeTag');
+      if (badgeEl) {
+        if (product.badge) {
+          badgeEl.textContent = product.badge;
+          badgeEl.style.display = 'inline-block';
+        } else {
+          badgeEl.style.display = 'none';
+        }
+      }
+
+      const ageEl = document.getElementById('pdpAgeTag');
+      if (ageEl) ageEl.textContent = `Age ${product.age || 'All Ages'}`;
+
+      const seriesEl = document.getElementById('pdpSeries');
+      if (seriesEl) seriesEl.textContent = product.series;
+
+      const titleEl = document.getElementById('pdpTitle');
+      if (titleEl) titleEl.textContent = product.name;
+
+      const ratingEl = document.getElementById('pdpRating');
+      if (ratingEl) ratingEl.innerHTML = `&#9733; ${product.rating || 5.0}`;
+
+      const reviewEl = document.getElementById('pdpReviewCount');
+      if (reviewEl) reviewEl.textContent = `(${product.reviewsCount || 0} verified reviews)`;
+
+      const priceStr = window.StoreClient ? window.StoreClient.formatPrice(product.price) : `$${product.price}`;
+      const origStr = (product.originalPrice && product.originalPrice > product.price) 
+        ? (window.StoreClient ? window.StoreClient.formatPrice(product.originalPrice) : `$${product.originalPrice}`)
+        : '';
+
+      const priceEl = document.getElementById('pdpPrice');
+      if (priceEl) priceEl.textContent = priceStr;
+
+      const origEl = document.getElementById('pdpOriginalPrice');
+      if (origEl) {
+        origEl.textContent = origStr;
+        origEl.style.display = origStr ? 'inline-block' : 'none';
+      }
+
+      const btnPriceEl = document.getElementById('pdpBtnPrice');
+      if (btnPriceEl) btnPriceEl.textContent = priceStr;
+
+      const descEl = document.getElementById('pdpDescription');
+      if (descEl) descEl.textContent = product.description;
+
+      const skuEl = document.getElementById('pdpSku');
+      if (skuEl) skuEl.textContent = product.sku || 'OXY-KIT';
+
+      // Highlights
+      const hlContainer = document.getElementById('pdpHighlights');
+      if (hlContainer) {
+        hlContainer.innerHTML = (product.highlights || []).map(hl => `
+          <div class="pdp-highlight-item">
+            <svg viewBox="0 0 16 16" fill="currentColor"><path d="M13.485 1.929a1 1 0 010 1.414l-7 7a1 1 0 01-1.414 0l-3.5-3.5a1 1 0 011.414-1.414L6 8.586l6.293-6.293a1 1 0 011.414 0z"/></svg>
+            <span>${hl}</span>
+          </div>
+        `).join('');
+      }
+
+      // Specs
+      const specsTable = document.getElementById('pdpSpecsTable');
+      if (specsTable) {
+        const specEntries = Object.entries(product.specs || {});
+        if (specEntries.length > 0) {
+          specsTable.innerHTML = specEntries.map(([k, v]) => `
+            <tr><td>${k}</td><td>${v}</td></tr>
+          `).join('');
+        } else {
+          specsTable.innerHTML = '<tr><td colspan="2" style="text-align: center; color: var(--oxy-gray-500);">Standard hardware specifications apply. Contact support for details.</td></tr>';
+        }
+      }
+
+      // Box Contents
+      const boxList = document.getElementById('pdpBoxList');
+      if (boxList) {
+        boxList.innerHTML = (product.boxContents || []).map(item => `
+          <li style="display: flex; align-items: center; gap: 0.5rem; font-size: 0.9rem; color: var(--oxy-gray-700);">
+            <span style="color: var(--oxy-primary); font-weight: 700;">&bull;</span> ${item}
+          </li>
+        `).join('');
+      }
+
+      // Quantity Logic
+      let currentQty = 1;
+      const qtyInput = document.getElementById('qtyInput');
+      const minusBtn = document.getElementById('qtyMinusBtn');
+      const plusBtn = document.getElementById('qtyPlusBtn');
+      const addBtn = document.getElementById('pdpAddToCartBtn');
+
+      if (minusBtn && qtyInput && btnPriceEl) {
+        minusBtn.onclick = () => {
+          if (currentQty > 1) {
+            currentQty--;
+            qtyInput.value = currentQty;
+            btnPriceEl.textContent = window.StoreClient ? window.StoreClient.formatPrice(product.price * currentQty) : `$${(product.price * currentQty).toFixed(2)}`;
+          }
+        };
+      }
+
+      if (plusBtn && qtyInput && btnPriceEl) {
+        plusBtn.onclick = () => {
+          currentQty++;
+          qtyInput.value = currentQty;
+          btnPriceEl.textContent = window.StoreClient ? window.StoreClient.formatPrice(product.price * currentQty) : `$${(product.price * currentQty).toFixed(2)}`;
+        };
+      }
+
+      if (addBtn) {
+        addBtn.onclick = () => {
+          if (window.CartState) {
+            window.CartState.addItem(product, currentQty);
+          }
+        };
+      }
+
+      // Tab switching
+      const pdpTabs = document.querySelectorAll('.pdp-tab-btn');
+      const pdpPanes = document.querySelectorAll('.pdp-tab-pane');
+      pdpTabs.forEach(tab => {
+        tab.onclick = () => {
+          pdpTabs.forEach(t => t.classList.remove('active'));
+          pdpPanes.forEach(p => p.classList.remove('active'));
+          tab.classList.add('active');
+          const target = document.getElementById(tab.getAttribute('data-tab'));
+          if (target) target.classList.add('active');
+        };
+      });
+    }
+
+    document.addEventListener('DOMContentLoaded', loadProductDetail);
+    document.addEventListener('oxybott:data-ready', loadProductDetail);
+  </script>
+</body>
+</html>

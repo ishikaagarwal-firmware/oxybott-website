@@ -1,0 +1,29 @@
+# Dependencies
+node_modules/
+
+# Environment secrets
+.env
+.env.local
+.env.*.local
+
+# SQLite temporary runtime files
+data/*.db-shm
+data/*.db-wal
+
+# Playwright & test reports
+test-results/
+playwright-report/
+reports/lighthouse-*.json
+reports/lighthouse-*.html
+reports/test-results.json
+
+# Temporary files & logs
+*.log
+npm-debug.log*
+scratch/
+.tempmediaStorage/
+assets/images/.backup/
+
+# OS specific
+Thumbs.db
+.DS_Store

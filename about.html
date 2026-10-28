@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>About Oxybott | Our Story, Mission &amp; Global STEM Network</title>
+  <meta name="description" content="Discover Oxybott's mission to empower the next generation of engineers and creators through open-source ESP32 robotics, accessible coding, and classroom solutions.">
+  <link rel="icon" type="image/webp" href="assets/images/oxybott_logo.webp">
+  <link rel="stylesheet" href="assets/css/styles.css">
+  <style>
+    .about-hero {
+      background: radial-gradient(circle at 80% 20%, rgba(0, 153, 255, 0.12) 0%, transparent 60%),
+                  linear-gradient(135deg, #071526 0%, #0c2340 100%);
+      color: var(--oxy-white);
+      padding: 5rem 0 6rem;
+      text-align: center;
+    }
+
+    .about-story-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      align-items: center;
+      gap: 4rem;
+      padding: 5rem 0;
+    }
+
+    .stats-counter-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 2rem;
+      background: var(--oxy-navy);
+      color: var(--oxy-white);
+      padding: 3.5rem 2rem;
+      border-radius: var(--radius-xl);
+      text-align: center;
+      margin: 3rem 0;
+    }
+
+    .stat-number {
+      font-size: clamp(2.25rem, 3.5vw, 3rem);
+      font-weight: 800;
+      color: var(--oxy-orange);
+      font-family: var(--font-heading);
+      margin-bottom: 0.25rem;
+    }
+
+    .stat-label {
+      font-size: 0.95rem;
+      color: #94a3b8;
+    }
+
+    .oem-box {
+      background: var(--oxy-gray-50);
+      border: 1px solid var(--oxy-gray-200);
+      border-radius: var(--radius-xl);
+      padding: 3.5rem 2.5rem;
+      margin-bottom: 5rem;
+    }
+
+    @media (max-width: 992px) {
+      .about-story-row { grid-template-columns: 1fr; gap: 2.5rem; }
+      .stats-counter-grid { grid-template-columns: repeat(2, 1fr); gap: 2rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Announcement -->
+  <div class="announcement-bar">
+    <div class="container announcement-content">
+      <span>
+        <span class="announcement-badge">ABOUT US</span> 
+        Inspiring over 500,000 students across 60+ countries with Oxybott STEM Kits
+        <a href="contact.html" class="announcement-link">Get in Touch &rarr;</a>
+      </span>
+    </div>
+  </div>
+
+  <!-- Header -->
+  <header class="site-header">
+    <div class="container header-wrapper">
+      <a href="index.html" class="brand-logo-link" aria-label="Oxybott Home">
+        <img src="assets/images/oxybott_logo.webp" alt="Oxybott Logo" class="brand-logo-img">
+      </a>
+
+      <nav class="main-nav">
+        <ul class="nav-list">
+          <li class="nav-item"><a href="products.html" class="nav-link">Products</a></li>
+          <li class="nav-item"><a href="education.html" class="nav-link">Education Solutions</a></li>
+          <li class="nav-item"><a href="software.html" class="nav-link">Software</a></li>
+          <li class="nav-item"><a href="tutorials.html" class="nav-link">Tutorials</a></li>
+          <li class="nav-item active"><a href="about.html" class="nav-link">About Us</a></li>
+          <li class="nav-item"><a href="contact.html" class="nav-link">Contact</a></li>
+        </ul>
+      </nav>
+
+      <div class="header-actions">
+        <button class="action-btn search-trigger" aria-label="Search Products"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg></button>
+        <button class="action-btn cart-trigger" aria-label="Shopping Cart"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg><span class="cart-badge">0</span></button>
+        <a href="#quote" class="btn btn-orange btn-sm quote-modal-trigger">Get Free Quote</a>
+        <button class="action-btn mobile-menu-btn" id="mobileMenuToggle" aria-label="Toggle Navigation Menu"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="18" x2="21" y2="18"/></svg></button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Hero -->
+  <section class="about-hero">
+    <div class="container container-narrow">
+      <span class="section-tag" style="background: rgba(0, 153, 255, 0.2); color: #7dd3fc;">Our Mission</span>
+      <h1 style="color: var(--oxy-white); margin-bottom: 1.25rem;">Democratizing Robotics &amp; STEM Education</h1>
+      <p style="color: #94a3b8; font-size: 1.2rem; line-height: 1.6;">
+        At Oxybott, we believe every child deserves the tools, confidence, and curiosity to build the future. We design intelligent, open-source educational hardware that turns abstract code into tangible kinetic creation.
+      </p>
+    </div>
+  </section>
+
+  <main class="container">
+    <!-- Story Row 1 -->
+    <div class="about-story-row">
+      <div>
+        <span class="section-tag">Who We Are</span>
+        <h2 style="margin-bottom: 1.25rem;">Born from a Passion for Hands-On Engineering</h2>
+        <p style="font-size: 1.05rem; color: var(--oxy-gray-600); line-height: 1.7; margin-bottom: 1.25rem;">
+          Founded by roboticists, educators, and embedded hardware engineers, Oxybott was created to address a critical gap in modern STEM education: kits were either too simplistic toys that lacked real programmable depth, or complex industrial hardware that overwhelmed teachers and students.
+        </p>
+        <p style="font-size: 1.05rem; color: var(--oxy-gray-600); line-height: 1.7;">
+          By standardizing on the powerful 240MHz ESP32 dual-core architecture, we brought real Wi-Fi and Bluetooth IoT capabilities to students at accessible prices, supported by our anti-reverse Easy-Plug wiring system.
+        </p>
+      </div>
+      <div>
+        <img src="assets/images/hardware-ecosystem.webp" alt="Oxybott Hardware Ecosystem" style="width: 100%; border-radius: var(--radius-xl); box-shadow: var(--shadow-xl);" loading="lazy" decoding="async">
+      </div>
+    </div>
+
+    <!-- Stats Banner -->
+    <div class="stats-counter-grid">
+      <div>
+        <div class="stat-number">500k+</div>
+        <div class="stat-label">Students Inspired Globally</div>
+      </div>
+      <div>
+        <div class="stat-number">2,400+</div>
+        <div class="stat-label">Partner Schools &amp; Labs</div>
+      </div>
+      <div>
+        <div class="stat-number">65+</div>
+        <div class="stat-label">Countries with Active Kits</div>
+      </div>
+      <div>
+        <div class="stat-number">100%</div>
+        <div class="stat-label">Open Source Commitment</div>
+      </div>
+    </div>
+
+    <!-- OEM & Co-Branding Section -->
+    <div class="oem-box" id="oem">
+      <div style="text-align: center; max-width: 760px; margin: 0 auto 3rem;">
+        <span class="section-tag orange">Enterprise Partnerships</span>
+        <h2 style="margin-top: 0.5rem; margin-bottom: 1rem;">Co-Branding, OEM &amp; Custom STEM Product Lines</h2>
+        <p style="color: var(--oxy-gray-600); font-size: 1.05rem;">
+          We work with educational publishers, national school networks, and robotics brands to develop custom hardware lines, localized textbooks, and private-label STEM kits.
+        </p>
+      </div>
+
+      <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem;">
+        <div style="background: var(--oxy-white); padding: 2rem; border-radius: var(--radius-lg); border: 1px solid var(--oxy-gray-200);">
+          <h4 style="color: var(--oxy-navy); margin-bottom: 0.5rem;">Custom Laser-Cut Chassis &amp; Branding</h4>
+          <p style="font-size: 0.875rem; color: var(--oxy-gray-600); line-height: 1.6;">Integrate your institution's logo, colors, and mascot directly onto our robotic chassis and custom printed packaging.</p>
+        </div>
+
+        <div style="background: var(--oxy-white); padding: 2rem; border-radius: var(--radius-lg); border: 1px solid var(--oxy-gray-200);">
+          <h4 style="color: var(--oxy-navy); margin-bottom: 0.5rem;">Tailored Curriculum Alignment</h4>
+          <p style="font-size: 0.875rem; color: var(--oxy-gray-600); line-height: 1.6;">Our education curriculum specialists map our lesson units directly to your regional or national education board requirements.</p>
+        </div>
+
+        <div style="background: var(--oxy-white); padding: 2rem; border-radius: var(--radius-lg); border: 1px solid var(--oxy-gray-200);">
+          <h4 style="color: var(--oxy-navy); margin-bottom: 0.5rem;">Global Certification &amp; Logistics</h4>
+          <p style="font-size: 0.875rem; color: var(--oxy-gray-600); line-height: 1.6;">Full CE, FCC, RoHS, and EN71 safety testing, with door-to-door school delivery anywhere in the world.</p>
+        </div>
+      </div>
+
+      <div style="text-align: center; margin-top: 2.5rem;">
+        <a href="contact.html#distributor" class="btn btn-orange btn-lg">Inquire About Co-Branding &rarr;</a>
+      </div>
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-top">
+        <div class="footer-brand-col">
+          <a href="index.html"><img src="assets/images/oxybott_logo.webp" alt="Oxybott" class="brand-logo-img" loading="lazy" decoding="async"></a>
+          <p class="footer-tagline">Oxybott is an international leader in ESP32-powered STEM kits and classroom solutions.</p>
+        </div>
+        <div class="footer-col"><h4 class="footer-col-title">STEM Kits</h4><ul class="footer-links-list"><li><a href="products.html" class="footer-link">All Products</a></li></ul></div>
+        <div class="footer-col"><h4 class="footer-col-title">Education</h4><ul class="footer-links-list"><li><a href="education.html" class="footer-link">Classroom Solutions</a></li></ul></div>
+        <div class="footer-col"><h4 class="footer-col-title">Resources</h4><ul class="footer-links-list"><li><a href="software.html" class="footer-link">OxyCode IDE</a></li><li><a href="tutorials.html" class="footer-link">Tutorials</a></li></ul></div>
+        <div class="footer-col"><h4 class="footer-col-title">Company</h4><ul class="footer-links-list"><li><a href="about.html" class="footer-link">About Us</a></li><li><a href="contact.html" class="footer-link">Contact</a></li></ul></div>
+      </div>
+      <div class="footer-bottom"><div>&copy; 2026 Oxybott Education Inc. All rights reserved.</div></div>
+    </div>
+  </footer>
+
+  <div class="cart-drawer-overlay" id="cartDrawerOverlay">
+    <div class="cart-drawer">
+      <div class="cart-header"><h3 class="cart-title">Your STEM Cart</h3><button class="cart-close-btn" id="cartCloseBtn">&times;</button></div>
+      <div class="cart-body"><div class="cart-empty-state" id="cartEmptyState"><p>Your cart is empty.</p></div><div class="cart-items-list" id="cartDrawerItems"></div></div>
+      <div class="cart-footer">
+        <div class="cart-summary-row cart-summary-total"><span>Subtotal:</span><span id="cartDrawerSubtotal">$0.00</span></div>
+        <button class="btn btn-orange checkout-btn" id="cartCheckoutBtn">Proceed to Checkout &rarr;</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="search-modal-overlay" id="searchModalOverlay">
+    <div class="search-modal-box">
+      <div class="search-input-wrapper"><input type="text" class="search-input-field" id="searchModalInput" placeholder="Search kits by name or SKU..."></div>
+      <div class="search-results-list" id="searchResultsList"></div>
+    </div>
+  </div>
+
+  <script src="assets/js/products-data.js"></script>
+  <script src="assets/js/store-client.js"></script>
+  <script src="assets/js/main.js"></script>
+</body>
+</html>

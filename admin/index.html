@@ -1,0 +1,654 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Oxybott Admin Dashboard</title>
+  <link rel="icon" type="image/webp" href="../assets/images/oxybott_logo.webp">
+  <link rel="stylesheet" href="admin.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Outfit:wght@600;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+
+  <!-- LOGIN SCREEN -->
+  <div class="login-screen" id="loginScreen">
+    <div class="login-card">
+      <img src="../assets/images/oxybott_logo.webp" alt="Oxybott" class="login-logo">
+      <h1 class="login-title">Admin Portal</h1>
+      <p class="login-subtitle">Sign in to manage Oxybott store, products, and content</p>
+
+      <div id="loginAlert" style="display: none; padding: 0.75rem; border-radius: 8px; background: #fee2e2; color: #b91c1c; font-size: 0.85rem; margin-bottom: 1rem;"></div>
+
+      <form class="login-form" id="loginForm">
+        <div class="form-group">
+          <label class="form-label">Username or Email</label>
+          <input type="text" id="loginUsername" class="form-input" placeholder="admin" required autofocus>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label">Password</label>
+          <input type="password" id="loginPassword" class="form-input" placeholder="••••••••" required>
+        </div>
+
+        <button type="submit" class="btn btn-primary" style="width: 100%; padding: 0.85rem; justify-content: center; margin-top: 0.5rem;" id="loginBtn">
+          Sign In to Dashboard &rarr;
+        </button>
+      </form>
+
+      <div style="margin-top: 1.5rem; padding: 0.75rem; background: var(--admin-gray-100); border-radius: 8px; font-size: 0.8rem; color: var(--admin-gray-600);">
+        <strong>Initial Admin Credentials:</strong><br>
+        Username: <code style="color: var(--admin-navy);">admin</code> &bull; Password: <code style="color: var(--admin-navy);">AdminPassword123!</code>
+      </div>
+    </div>
+  </div>
+
+  <!-- AUTHENTICATED DASHBOARD SHELL -->
+  <div class="admin-shell" id="adminShell">
+    <!-- Sidebar -->
+    <aside class="admin-sidebar">
+      <div class="sidebar-header">
+        <img src="../assets/images/oxybott_logo.webp" alt="Oxybott" class="sidebar-logo">
+      </div>
+
+      <nav class="sidebar-nav">
+        <a class="nav-link active" data-section="sectionDashboard">
+          <span class="nav-link-icon">&#128202;</span>
+          <span>Dashboard</span>
+        </a>
+        <a class="nav-link" data-section="sectionProducts">
+          <span class="nav-link-icon">&#128230;</span>
+          <span>Products</span>
+        </a>
+        <a class="nav-link" data-section="sectionCategories">
+          <span class="nav-link-icon">&#128194;</span>
+          <span>Categories</span>
+        </a>
+        <a class="nav-link" data-section="sectionBanners">
+          <span class="nav-link-icon">&#128444;</span>
+          <span>Banners</span>
+        </a>
+        <a class="nav-link" data-section="sectionSettings">
+          <span class="nav-link-icon">&#9881;</span>
+          <span>Settings</span>
+        </a>
+        <a class="nav-link" data-section="sectionAudit">
+          <span class="nav-link-icon">&#128221;</span>
+          <span>Audit Logs</span>
+        </a>
+        <a class="nav-link" data-section="sectionInquiries">
+          <span class="nav-link-icon">&#128231;</span>
+          <span>Inquiries &amp; Leads</span>
+        </a>
+      </nav>
+
+      <div class="sidebar-footer">
+        <a href="/" target="_blank" class="btn btn-outline btn-sm" style="color: white; border-color: rgba(255,255,255,0.2); background: transparent;">
+          &#127760; View Store
+        </a>
+        <button id="logoutBtn" class="btn btn-danger btn-sm">Logout</button>
+      </div>
+    </aside>
+
+    <!-- Main Content Area -->
+    <div class="admin-main">
+      <header class="admin-header">
+        <div style="font-weight: 600; color: var(--admin-gray-600); font-size: 0.9rem;" id="headerWelcome">
+          Logged in as <strong>Admin</strong>
+        </div>
+        <div style="display: flex; align-items: center; gap: 1rem;">
+          <span id="activeCurrencyDisplay" class="badge badge-orange">Currency: INR (₹)</span>
+        </div>
+      </header>
+
+      <div class="admin-content">
+        <!-- 1. DASHBOARD OVERVIEW -->
+        <section class="admin-section active" id="sectionDashboard">
+          <div class="section-header-row">
+            <div>
+              <h2 class="page-title">Overview Dashboard</h2>
+              <p style="color: var(--admin-gray-500); font-size: 0.9rem;">Store inventory, product publication status, and recent activity.</p>
+            </div>
+            <button class="btn btn-orange" id="quickAddProductBtn">+ New Product</button>
+          </div>
+
+          <!-- KPI Metrics -->
+          <div class="metrics-grid">
+            <div class="metric-card">
+              <div class="metric-label">Total Products</div>
+              <div class="metric-val" id="metricTotalProducts">0</div>
+            </div>
+            <div class="metric-card">
+              <div class="metric-label">Published</div>
+              <div class="metric-val green" id="metricPublished">0</div>
+            </div>
+            <div class="metric-card">
+              <div class="metric-label">Drafts</div>
+              <div class="metric-val" id="metricDrafts">0</div>
+            </div>
+            <div class="metric-card">
+              <div class="metric-label">Low Stock</div>
+              <div class="metric-val red" id="metricLowStock">0</div>
+            </div>
+            <div class="metric-card">
+              <div class="metric-label">Categories</div>
+              <div class="metric-val orange" id="metricCategories">0</div>
+            </div>
+          </div>
+
+          <!-- Recent Product Updates Card -->
+          <div class="data-card" style="margin-bottom: 2rem;">
+            <div class="data-toolbar">
+              <h3 style="font-size: 1.05rem; color: var(--admin-navy);">Recently Updated Products</h3>
+              <a class="btn btn-outline btn-sm" onclick="navigateToSection('sectionProducts')">View All Products &rarr;</a>
+            </div>
+            <div class="table-responsive">
+              <table class="admin-table">
+                <thead>
+                  <tr>
+                    <th>SKU</th>
+                    <th>Product Name</th>
+                    <th>Price</th>
+                    <th>Stock</th>
+                    <th>Status</th>
+                    <th>Last Updated</th>
+                  </tr>
+                </thead>
+                <tbody id="recentProductsTableBody"></tbody>
+              </table>
+            </div>
+          </div>
+
+          <!-- Recent Audit Logs Card -->
+          <div class="data-card">
+            <div class="data-toolbar">
+              <h3 style="font-size: 1.05rem; color: var(--admin-navy);">Recent Administrative Activity</h3>
+              <a class="btn btn-outline btn-sm" onclick="navigateToSection('sectionAudit')">Full Audit Trail &rarr;</a>
+            </div>
+            <div class="table-responsive">
+              <table class="admin-table">
+                <thead>
+                  <tr>
+                    <th>Time</th>
+                    <th>Admin</th>
+                    <th>Action</th>
+                    <th>Target</th>
+                    <th>Details</th>
+                  </tr>
+                </thead>
+                <tbody id="dashboardAuditTableBody"></tbody>
+              </table>
+            </div>
+          </div>
+        </section>
+
+        <!-- 2. PRODUCT MANAGEMENT -->
+        <section class="admin-section" id="sectionProducts">
+          <div class="section-header-row">
+            <div>
+              <h2 class="page-title">Products</h2>
+              <p style="color: var(--admin-gray-500); font-size: 0.9rem;">Manage prices, images, stock levels, and technical specifications.</p>
+            </div>
+            <button class="btn btn-primary" id="openAddProductModalBtn">+ Add New Product</button>
+          </div>
+
+          <div class="data-card">
+            <!-- Filter Toolbar -->
+            <div class="data-toolbar">
+              <div style="display: flex; gap: 0.75rem; flex-wrap: wrap; flex-grow: 1;">
+                <input type="text" id="productSearchInput" class="form-input" style="max-width: 280px;" placeholder="Search by name or SKU...">
+                <select id="productSeriesFilter" class="form-select" style="max-width: 180px;">
+                  <option value="">All Series</option>
+                  <option value="Explorer Series">Explorer Series</option>
+                  <option value="Education Series">Education Series</option>
+                  <option value="Inventor Series">Inventor Series</option>
+                  <option value="Maker Series">Maker Series</option>
+                </select>
+                <select id="productStatusFilter" class="form-select" style="max-width: 160px;">
+                  <option value="">All Statuses</option>
+                  <option value="published">Published</option>
+                  <option value="draft">Drafts</option>
+                  <option value="low_stock">Low Stock</option>
+                </select>
+              </div>
+              <div id="productCountBadge" style="font-size: 0.85rem; font-weight: 600; color: var(--admin-gray-500);">0 products</div>
+            </div>
+
+            <!-- Table -->
+            <div class="table-responsive">
+              <table class="admin-table">
+                <thead>
+                  <tr>
+                    <th style="width: 60px;">Image</th>
+                    <th>SKU</th>
+                    <th>Name</th>
+                    <th>Series</th>
+                    <th>Price</th>
+                    <th>Stock</th>
+                    <th>Status</th>
+                    <th style="text-align: right;">Actions</th>
+                  </tr>
+                </thead>
+                <tbody id="productsTableBody"></tbody>
+              </table>
+            </div>
+          </div>
+        </section>
+
+        <!-- 3. CATEGORIES MANAGEMENT -->
+        <section class="admin-section" id="sectionCategories">
+          <div class="section-header-row">
+            <div>
+              <h2 class="page-title">Categories &amp; Collections</h2>
+              <p style="color: var(--admin-gray-500); font-size: 0.9rem;">Organize series, educational levels, and product categories.</p>
+            </div>
+            <button class="btn btn-primary" id="openAddCategoryModalBtn">+ Add Category</button>
+          </div>
+
+          <div class="data-card">
+            <div class="table-responsive">
+              <table class="admin-table">
+                <thead>
+                  <tr>
+                    <th>Name</th>
+                    <th>Slug</th>
+                    <th>Description</th>
+                    <th>Products</th>
+                    <th>Status</th>
+                    <th style="text-align: right;">Actions</th>
+                  </tr>
+                </thead>
+                <tbody id="categoriesTableBody"></tbody>
+              </table>
+            </div>
+          </div>
+        </section>
+
+        <!-- 4. BANNERS MANAGEMENT -->
+        <section class="admin-section" id="sectionBanners">
+          <div class="section-header-row">
+            <div>
+              <h2 class="page-title">Promotional Banners</h2>
+              <p style="color: var(--admin-gray-500); font-size: 0.9rem;">Homepage hero sliders and promotional campaigns.</p>
+            </div>
+            <button class="btn btn-primary" id="openAddBannerModalBtn">+ Add Banner</button>
+          </div>
+
+          <div class="data-card">
+            <div class="table-responsive">
+              <table class="admin-table">
+                <thead>
+                  <tr>
+                    <th>Title</th>
+                    <th>Subtitle</th>
+                    <th>CTA Button</th>
+                    <th>Status</th>
+                    <th style="text-align: right;">Actions</th>
+                  </tr>
+                </thead>
+                <tbody id="bannersTableBody"></tbody>
+              </table>
+            </div>
+          </div>
+        </section>
+
+        <!-- 5. STORE SETTINGS -->
+        <section class="admin-section" id="sectionSettings">
+          <div class="section-header-row">
+            <div>
+              <h2 class="page-title">Store &amp; Currency Settings</h2>
+              <p style="color: var(--admin-gray-500); font-size: 0.9rem;">Configure currency symbol, notification emails, and header announcements.</p>
+            </div>
+            <button class="btn btn-orange" id="saveSettingsBtn">Save Settings</button>
+          </div>
+
+          <div class="data-card" style="padding: 2rem; max-width: 800px;">
+            <form id="settingsForm" style="display: flex; flex-direction: column; gap: 1.5rem;">
+              <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem;">
+                <div class="form-group">
+                  <label class="form-label">Default Currency Code</label>
+                  <select id="settingCurrencyCode" class="form-select">
+                    <option value="INR">INR (Indian Rupee)</option>
+                    <option value="USD">USD (US Dollar)</option>
+                    <option value="EUR">EUR (Euro)</option>
+                    <option value="GBP">GBP (British Pound)</option>
+                  </select>
+                </div>
+                <div class="form-group">
+                  <label class="form-label">Currency Symbol</label>
+                  <input type="text" id="settingCurrencySymbol" class="form-input" value="₹">
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label class="form-label">Store Public Name</label>
+                <input type="text" id="settingStoreName" class="form-input" value="Oxybott STEM Robotics">
+              </div>
+
+              <div class="form-group">
+                <label class="form-label">Top Announcement Bar Text</label>
+                <input type="text" id="settingAnnouncement" class="form-input">
+              </div>
+
+              <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem;">
+                <div class="form-group">
+                  <label class="form-label">School Orders &amp; Quotes Email</label>
+                  <input type="email" id="settingContactEmail" class="form-input">
+                </div>
+                <div class="form-group">
+                  <label class="form-label">Technical Support Email</label>
+                  <input type="email" id="settingSupportEmail" class="form-input">
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label class="form-label">Free Priority Shipping Threshold Amount</label>
+                <input type="number" id="settingFreeShipping" class="form-input" placeholder="2999">
+              </div>
+            </form>
+          </div>
+        </section>
+
+        <!-- 6. AUDIT LOGS -->
+        <section class="admin-section" id="sectionAudit">
+          <div class="section-header-row">
+            <div>
+              <h2 class="page-title">Administrative Audit Logs</h2>
+              <p style="color: var(--admin-gray-500); font-size: 0.9rem;">Permanent ledger of all product creations, updates, deletions, and logins.</p>
+            </div>
+          </div>
+
+          <div class="data-card">
+            <div class="table-responsive">
+              <table class="admin-table">
+                <thead>
+                  <tr>
+                    <th>Timestamp</th>
+                    <th>User</th>
+                    <th>Action</th>
+                    <th>Entity</th>
+                    <th>Details</th>
+                    <th>IP Address</th>
+                  </tr>
+                </thead>
+                <tbody id="fullAuditTableBody"></tbody>
+              </table>
+            </div>
+          </div>
+        </section>
+
+        <!-- 7. INQUIRIES & LEADS MANAGEMENT -->
+        <section class="admin-section" id="sectionInquiries">
+          <div class="section-header-row">
+            <div>
+              <h2 class="page-title">Customer Inquiries &amp; Quotations</h2>
+              <p style="color: var(--admin-gray-500); font-size: 0.9rem;">Review and manage educational quote requests, school trials, and customer messages.</p>
+            </div>
+            <div style="display: flex; gap: 0.5rem;">
+              <select id="inquiryTypeFilter" class="form-select" style="width: auto;">
+                <option value="">All Types</option>
+                <option value="quote">Quotes</option>
+                <option value="trial">Trials</option>
+                <option value="contact">Contact Messages</option>
+                <option value="newsletter">Newsletter</option>
+              </select>
+              <select id="inquiryStatusFilter" class="form-select" style="width: auto;">
+                <option value="">All Statuses</option>
+                <option value="new">New</option>
+                <option value="in_progress">In Progress</option>
+                <option value="resolved">Resolved</option>
+                <option value="archived">Archived</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="table-card">
+            <div class="table-responsive">
+              <table class="data-table">
+                <thead>
+                  <tr>
+                    <th>Date</th>
+                    <th>Type</th>
+                    <th>Contact</th>
+                    <th>Organization</th>
+                    <th>Subject / Message</th>
+                    <th>Status</th>
+                    <th>Actions</th>
+                  </tr>
+                </thead>
+                <tbody id="inquiriesTableBody"></tbody>
+              </table>
+            </div>
+          </div>
+        </section>
+      </div>
+    </div>
+  </div>
+
+  <!-- PRODUCT EDITOR MODAL -->
+  <div class="modal-overlay" id="productModal">
+    <div class="modal-dialog">
+      <div class="modal-header">
+        <h3 style="font-size: 1.25rem; color: var(--admin-navy);" id="productModalTitle">Add New Product</h3>
+        <button class="btn btn-outline btn-sm" id="closeProductModalBtn">&times;</button>
+      </div>
+
+      <div class="modal-body">
+        <form id="productEditForm">
+          <input type="hidden" id="editProductId">
+
+          <!-- General Details -->
+          <h4 style="font-size: 1rem; color: var(--admin-navy); margin-bottom: 0.75rem; border-bottom: 1px solid var(--admin-gray-200); padding-bottom: 0.35rem;">General Information</h4>
+          
+          <div style="display: grid; grid-template-columns: 2fr 1fr; gap: 1rem; margin-bottom: 1rem;">
+            <div class="form-group">
+              <label class="form-label">Full Product Name *</label>
+              <input type="text" id="editProdName" class="form-input" placeholder="e.g. Oxybott QD022 4-DOF Robot Arm Kit" required>
+            </div>
+            <div class="form-group">
+              <label class="form-label">SKU *</label>
+              <input type="text" id="editProdSku" class="form-input" placeholder="e.g. OXY-QD022" required>
+            </div>
+          </div>
+
+          <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 1rem; margin-bottom: 1rem;">
+            <div class="form-group">
+              <label class="form-label">Short Name</label>
+              <input type="text" id="editProdShortName" class="form-input" placeholder="e.g. Robot Arm Kit">
+            </div>
+            <div class="form-group">
+              <label class="form-label">Series</label>
+              <select id="editProdSeries" class="form-select">
+                <option value="Explorer Series">Explorer Series</option>
+                <option value="Education Series">Education Series</option>
+                <option value="Inventor Series">Inventor Series</option>
+                <option value="Maker Series">Maker Series</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Badge Tag</label>
+              <input type="text" id="editProdBadge" class="form-input" placeholder="e.g. Bestseller, New, Popular">
+            </div>
+          </div>
+
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-bottom: 1rem;">
+            <div class="form-group">
+              <label class="form-label">Age Recommendation</label>
+              <input type="text" id="editProdAge" class="form-input" placeholder="e.g. 12+ & Makers">
+            </div>
+            <div class="form-group">
+              <label class="form-label">Grade Level</label>
+              <input type="text" id="editProdGrade" class="form-input" placeholder="e.g. Grade 6-12">
+            </div>
+          </div>
+
+          <div class="form-group" style="margin-bottom: 1rem;">
+            <label class="form-label">Tagline (One-liner)</label>
+            <input type="text" id="editProdTagline" class="form-input" placeholder="4-DOF ESP32 Dual-Core Robotic Arm with Wireless Bluetooth & Wi-Fi Control">
+          </div>
+
+          <div class="form-group" style="margin-bottom: 1.5rem;">
+            <label class="form-label">Full Product Description</label>
+            <textarea id="editProdDescription" class="form-textarea" rows="4" placeholder="Detailed product features and educational overview..."></textarea>
+          </div>
+
+          <!-- Pricing & Stock -->
+          <h4 style="font-size: 1rem; color: var(--admin-navy); margin-bottom: 0.75rem; border-bottom: 1px solid var(--admin-gray-200); padding-bottom: 0.35rem;">Pricing &amp; Inventory</h4>
+
+          <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 1rem; margin-bottom: 1rem;">
+            <div class="form-group">
+              <label class="form-label">Regular Price (<span class="currencyLabel">₹</span>) *</label>
+              <input type="number" step="0.01" id="editProdPrice" class="form-input" required placeholder="7499">
+            </div>
+            <div class="form-group">
+              <label class="form-label">Sale Price (Optional)</label>
+              <input type="number" step="0.01" id="editProdSalePrice" class="form-input" placeholder="6999">
+            </div>
+            <div class="form-group">
+              <label class="form-label">Stock Quantity</label>
+              <input type="number" id="editProdStock" class="form-input" value="100">
+            </div>
+          </div>
+
+          <div style="display: flex; gap: 2rem; margin-bottom: 1.5rem;">
+            <label style="display: flex; align-items: center; gap: 0.5rem; font-size: 0.9rem; cursor: pointer;">
+              <input type="checkbox" id="editProdPublished" checked style="width: 18px; height: 18px;">
+              <strong>Published (Visible on Storefront)</strong>
+            </label>
+            <label style="display: flex; align-items: center; gap: 0.5rem; font-size: 0.9rem; cursor: pointer;">
+              <input type="checkbox" id="editProdFeatured" style="width: 18px; height: 18px;">
+              <span>Featured on Homepage</span>
+            </label>
+          </div>
+
+          <!-- Product Categories Checkboxes -->
+          <h4 style="font-size: 1rem; color: var(--admin-navy); margin-bottom: 0.75rem; border-bottom: 1px solid var(--admin-gray-200); padding-bottom: 0.35rem;">Categories</h4>
+          <div id="editProdCategoriesList" style="display: flex; flex-wrap: wrap; gap: 1rem; margin-bottom: 1.5rem;"></div>
+
+          <!-- Product Image Management -->
+          <div id="productImagesSection" style="margin-bottom: 1.5rem;">
+            <h4 style="font-size: 1rem; color: var(--admin-navy); margin-bottom: 0.75rem; border-bottom: 1px solid var(--admin-gray-200); padding-bottom: 0.35rem;">Product Images Gallery</h4>
+            <div id="productGalleryContainer" style="display: flex; flex-wrap: wrap; gap: 1rem; margin-bottom: 1rem;"></div>
+            
+            <div style="background: var(--admin-gray-50); border: 2px dashed var(--admin-gray-300); border-radius: 8px; padding: 1.5rem; text-align: center;">
+              <p style="font-size: 0.85rem; color: var(--admin-gray-600); margin-bottom: 0.75rem;">Upload new high-res product photos (PNG, JPG, WEBP, SVG)</p>
+              <input type="file" id="productImageFileInput" multiple accept="image/*" style="display: none;">
+              <button type="button" class="btn btn-outline btn-sm" onclick="document.getElementById('productImageFileInput').click();">&#128247; Choose Images to Upload</button>
+              <span id="uploadStatusText" style="margin-left: 0.75rem; font-size: 0.85rem; color: var(--admin-primary); font-weight: 600;"></span>
+            </div>
+          </div>
+
+          <!-- Dynamic Specifications -->
+          <h4 style="font-size: 1rem; color: var(--admin-navy); margin-bottom: 0.75rem; border-bottom: 1px solid var(--admin-gray-200); padding-bottom: 0.35rem; display: flex; justify-content: space-between; align-items: center;">
+            <span>Hardware Specifications</span>
+            <button type="button" class="btn btn-outline btn-sm" id="addSpecRowBtn">+ Add Spec</button>
+          </h4>
+          <div id="specsRowsContainer" style="display: flex; flex-direction: column; gap: 0.5rem; margin-bottom: 1.5rem;"></div>
+
+          <!-- Dynamic Highlights -->
+          <h4 style="font-size: 1rem; color: var(--admin-navy); margin-bottom: 0.75rem; border-bottom: 1px solid var(--admin-gray-200); padding-bottom: 0.35rem; display: flex; justify-content: space-between; align-items: center;">
+            <span>Key Educational Highlights</span>
+            <button type="button" class="btn btn-outline btn-sm" id="addHighlightRowBtn">+ Add Highlight</button>
+          </h4>
+          <div id="highlightsRowsContainer" style="display: flex; flex-direction: column; gap: 0.5rem; margin-bottom: 1.5rem;"></div>
+
+          <!-- Box Contents -->
+          <h4 style="font-size: 1rem; color: var(--admin-navy); margin-bottom: 0.75rem; border-bottom: 1px solid var(--admin-gray-200); padding-bottom: 0.35rem; display: flex; justify-content: space-between; align-items: center;">
+            <span>What's in the Box</span>
+            <button type="button" class="btn btn-outline btn-sm" id="addBoxRowBtn">+ Add Item</button>
+          </h4>
+          <div id="boxRowsContainer" style="display: flex; flex-direction: column; gap: 0.5rem; margin-bottom: 1.5rem;"></div>
+        </form>
+      </div>
+
+      <div class="modal-footer">
+        <button type="button" class="btn btn-outline" id="cancelProductBtn">Cancel</button>
+        <button type="button" class="btn btn-primary" id="saveProductBtn">Save Product &rarr;</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- CATEGORY MODAL -->
+  <div class="modal-overlay" id="categoryModal">
+    <div class="modal-dialog" style="max-width: 500px;">
+      <div class="modal-header">
+        <h3 id="categoryModalTitle">Add Category</h3>
+        <button class="btn btn-outline btn-sm" id="closeCategoryModalBtn">&times;</button>
+      </div>
+      <div class="modal-body">
+        <form id="categoryForm" style="display: flex; flex-direction: column; gap: 1rem;">
+          <input type="hidden" id="editCategoryId">
+          <div class="form-group">
+            <label class="form-label">Category Name *</label>
+            <input type="text" id="editCategoryName" class="form-input" required>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Slug (Optional)</label>
+            <input type="text" id="editCategorySlug" class="form-input" placeholder="auto-generated from name">
+          </div>
+          <div class="form-group">
+            <label class="form-label">Description</label>
+            <textarea id="editCategoryDesc" class="form-textarea" rows="2"></textarea>
+          </div>
+          <label style="display: flex; align-items: center; gap: 0.5rem; font-size: 0.9rem;">
+            <input type="checkbox" id="editCategoryPublished" checked> Published
+          </label>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-outline" id="cancelCategoryBtn">Cancel</button>
+        <button class="btn btn-primary" id="saveCategoryBtn">Save Category</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- BANNER MODAL -->
+  <div class="modal-overlay" id="bannerModal">
+    <div class="modal-dialog" style="max-width: 550px;">
+      <div class="modal-header">
+        <h3 id="bannerModalTitle">Add Banner</h3>
+        <button class="btn btn-outline btn-sm" id="closeBannerModalBtn">&times;</button>
+      </div>
+      <div class="modal-body">
+        <form id="bannerForm" style="display: flex; flex-direction: column; gap: 1rem;">
+          <input type="hidden" id="editBannerId">
+          <div class="form-group">
+            <label class="form-label">Banner Title *</label>
+            <input type="text" id="editBannerTitle" class="form-input" required>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Subtitle / Description</label>
+            <input type="text" id="editBannerSubtitle" class="form-input">
+          </div>
+          <div class="form-group">
+            <label class="form-label">Image URL</label>
+            <input type="text" id="editBannerImageUrl" class="form-input" placeholder="assets/images/...">
+          </div>
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+            <div class="form-group">
+              <label class="form-label">CTA Button Text</label>
+              <input type="text" id="editBannerCtaText" class="form-input" placeholder="Explore Kits &rarr;">
+            </div>
+            <div class="form-group">
+              <label class="form-label">CTA Link URL</label>
+              <input type="text" id="editBannerCtaLink" class="form-input" placeholder="products.html">
+            </div>
+          </div>
+          <label style="display: flex; align-items: center; gap: 0.5rem; font-size: 0.9rem;">
+            <input type="checkbox" id="editBannerActive" checked> Active / Visible
+          </label>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-outline" id="cancelBannerBtn">Cancel</button>
+        <button class="btn btn-primary" id="saveBannerBtn">Save Banner</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- TOAST CONTAINER -->
+  <div class="toast-container" id="toastContainer"></div>
+
+  <script src="admin.js"></script>
+</body>
+</html>

@@ -1,0 +1,12 @@
+{
+  "version": 1,
+  "skills": {
+    "oma-qa": {
+      "source": "first-fluke/fullstack-starter",
+      "ref": "main",
+      "sourceType": "github",
+      "skillPath": ".agents/skills/oma-qa/SKILL.md",
+      "computedHash": "881ea2ebae3665c6ab24adf7e6b6cc085dd6e55d791c33b718e7448622f31dbf"
+    }
+  }
+}
